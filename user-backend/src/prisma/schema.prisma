@@ -1,0 +1,202 @@
+generator client {
+  provider = "prisma-client"
+  output   = "./generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ============================================
+// ENUMS
+// ============================================
+
+enum UserRole {
+  USER
+  ADMIN
+}
+
+enum AuthProvider {
+  LOCAL
+  GOOGLE
+}
+
+enum InvoiceStatus {
+  DRAFT
+  SENT
+  VIEWED
+  PARTIALLY_PAID
+  PAID
+  OVERDUE
+  CANCELLED
+}
+
+enum PaymentMethod {
+  UPI
+  NEFT_RTGS
+  CASH
+  CHEQUE
+  CARD
+  OTHER
+}
+
+// ============================================
+// MODELS
+// ============================================
+
+model User {
+  id           Int          @id @default(autoincrement())
+  email        String       @unique
+  password     String?
+  role         UserRole     @default(USER)
+  authProvider AuthProvider @default(LOCAL) @map("auth_provider")
+  providerId   String?      @unique @map("provider_id")
+  isActive     Boolean      @default(true) @map("is_active")
+  createdAt    DateTime     @default(now()) @map("created_at")
+  updatedAt    DateTime     @updatedAt @map("updated_at")
+  deletedAt    DateTime?    @map("deleted_at")
+
+  business Business?
+
+
+
+  @@map("users")
+  @@index([isActive])
+}
+
+model Business {
+  id        Int     @id @default(autoincrement())
+  userId    Int     @unique @map("user_id")
+  name      String  @db.VarChar(150)
+  logoUrl   String? @map("logo_url")
+  address   String?
+  city      String?
+  state     String?
+  country   String?
+  zipCode   String? @map("zip_code")
+  phone     String?
+  taxId     String? @map("tax_id") // GST/VAT number
+  website   String?
+  
+  // Invoice Defaults
+  currency      String  @default("INR") @db.VarChar(3)
+  taxRate       Float   @default(0)
+  invoicePrefix String  @default("INV") @db.VarChar(10)
+  nextInvoiceNum Int    @default(1) @map("next_invoice_num")
+  
+  // UPI/Reconciliation Details (Crucial for our Blinkit-level auto-reconciliation)
+  upiId            String? @map("upi_id")
+  bankAccountNo    String? @map("bank_account_no")
+  bankIfsc         String? @map("bank_ifsc")
+  bankName         String? @map("bank_name")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  tax       Json?    // Flexible field to store various tax configurations (GST slabs, VAT rates, etc.)?
+  user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  clients Client[]
+  invoices Invoice[]
+
+  @@map("businesses")
+  @@index([userId])
+}
+
+model Client {
+  id         Int     @id @default(autoincrement())
+  businessId Int     @map("business_id")
+  name       String  @db.VarChar(150)
+  email      String
+  phone      String?
+  address    String?
+  city       String?
+  state      String?
+  country    String?
+  zipCode    String? @map("zip_code")
+  gstin      String? // Specific to Indian businesses
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  business Business  @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  invoices Invoice[]
+  payments Payment[]
+
+  @@map("clients")
+  @@index([businessId])
+}
+
+model Invoice {
+  id            Int          @id @default(autoincrement())
+  businessId    Int          @map("business_id")
+  clientId      Int          @map("client_id")
+  invoiceNumber String       @unique @map("invoice_number") // e.g., INV-001
+  status        InvoiceStatus @default(DRAFT)
+  issueDate     DateTime     @map("issue_date")
+  dueDate       DateTime     @map("due_date")
+  
+  subtotal      Float
+  taxRate       Float        @map("tax_rate")
+  taxAmount     Float        @map("tax_amount")
+  discount      Float        @default(0)
+  total         Float
+  
+  notes         String?
+  terms         String?
+  
+  // Tracking & Smart Reconciliation Fields
+  publicId             String    @unique @default(cuid()) @map("public_id") // For magic link
+  viewedAt             DateTime? @map("viewed_at")
+  sentAt               DateTime? @map("sent_at")
+  razorpayPaymentLinkId String?  @map("razorpay_payment_link_id") // If generated via API
+  
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  business Business      @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  client   Client        @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  items    InvoiceItem[]
+  payments Payment[]
+
+  @@map("invoices")
+  @@index([businessId])
+  @@index([clientId])
+  @@index([status])
+  @@index([dueDate])
+}
+
+model InvoiceItem {
+  id          Int    @id @default(autoincrement())
+  invoiceId   Int    @map("invoice_id")
+
+  description String
+  quantity    Float
+  rate        Float
+  amount      Float  // quantity * rate
+
+  invoice Invoice @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+
+  @@map("invoice_items")
+  @@index([invoiceId])
+}
+
+model Payment {
+  id          Int           @id @default(autoincrement())
+  invoiceId   Int           @map("invoice_id")
+  businessId  Int           @map("business_id")
+  clientId    Int           @map("client_id")
+  amount      Float
+  method      PaymentMethod
+  reference   String?       // UTR/Transaction ID for manual NEFT/RTGS
+  razorpayPaymentId String? @map("razorpay_payment_id") // Auto-filled if paid via QR
+  paidAt      DateTime      @map("paid_at")
+  notes       String?
+  createdAt   DateTime      @default(now()) @map("created_at")
+  invoice Invoice @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+  client  Client  @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  @@map("payments")
+  @@index([invoiceId])
+  @@index([businessId])
+  @@index([clientId])
+}

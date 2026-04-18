@@ -1,0 +1,139 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ============================================================
+   LIGHT THEME (Default) — LinkedIn-inspired warm off-white
+   ============================================================ */
+:root {
+  --radius: 0.625rem;
+
+  --background: #F4F2EE;
+  --foreground: #1B1B1B;
+  --card: #FFFFFF;
+  --card-foreground: #1B1B1B;
+  --popover: #FFFFFF;
+  --popover-foreground: #1B1B1B;
+  --primary: #6366f1;
+  --primary-foreground: #FFFFFF;
+  --secondary: #EDEBE9;
+  --secondary-foreground: #1B1B1B;
+  --muted: #EDEBE9;
+  --muted-foreground: #6B7280;
+  --accent: #EDEBE9;
+  --accent-foreground: #1B1B1B;
+  --destructive: #EF4444;
+  --destructive-foreground: #FFFFFF;
+  --border: #E0DFDC;
+  --input: #E0DFDC;
+  --ring: #6366f1;
+
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: #1B1B1B;
+  --sidebar-primary: #6366f1;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #EDEBE9;
+  --sidebar-accent-foreground: #1B1B1B;
+  --sidebar-border: #E0DFDC;
+  --sidebar-ring: #6366f1;
+}
+
+/* ============================================================
+   DARK THEME — Used by .dark wrapper on public profile [slug]/page.tsx
+   ============================================================ */
+.dark {
+  --background: #0a0a0f;
+  --foreground: #f0f0f5;
+  --card: #13131a;
+  --card-foreground: #f0f0f5;
+  --popover: #13131a;
+  --popover-foreground: #f0f0f5;
+  --primary: #a855f7;
+  --primary-foreground: #ffffff;
+  --secondary: #1e1e2a;
+  --secondary-foreground: #f0f0f5;
+  --muted: #1a1a24;
+  --muted-foreground: #71717a;
+  --accent: #1e1e2a;
+  --accent-foreground: #f0f0f5;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #27272a;
+  --input: #27272a;
+  --ring: #a855f7;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* ============================================================
+   DASHBOARD ANIMATIONS & UTILITIES
+   ============================================================ */
+@keyframes slide-in-from-left {
+  from { opacity: 0; transform: translateX(-8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-slide-in {
+  animation: slide-in-from-left 0.2s ease-out;
+}
+
+.animate-fade-up {
+  animation: fade-up 0.25s ease-out both;
+}
+
+/* Staggered children */
+.stagger-children > *:nth-child(1) { animation-delay: 0ms; }
+.stagger-children > *:nth-child(2) { animation-delay: 60ms; }
+.stagger-children > *:nth-child(3) { animation-delay: 120ms; }
+.stagger-children > *:nth-child(4) { animation-delay: 180ms; }
+.stagger-children > *:nth-child(5) { animation-delay: 240ms; }

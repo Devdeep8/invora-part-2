@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["./*"]
+    },
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "esModuleInterop": true
+  },
+  "include": ["src/**/*", "index.js"],
+  "exclude": ["node_modules", "dist", "generated"]
+}

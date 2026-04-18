@@ -1,0 +1,54 @@
+version: "3.5"
+
+networks:
+  invoiceso-net:
+    name: invoiceso-net
+
+volumes:
+  redis-data:
+  postgres-data:
+
+services:
+  redis:
+    image: redis:6.2-alpine
+    container_name: invoiceso-redis
+    command: redis-server --requirepass "${REDIS_PASSWORD}"
+    volumes:
+      - redis-data:/data
+    restart: always
+    networks:
+      - invoiceso-net
+
+  database:
+    image: postgres:14-alpine
+    container_name: invoiceso-postgres
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: invoiceso_db
+    restart: always
+    networks:
+      - invoiceso-net
+
+  user-backend:
+    build:
+      context: ../user-backend
+      target: production
+    container_name: invoiceso-user-backend
+    command: npm run start:prod
+    ports:
+      - "8002:8002"
+    env_file: ../user-backend/.env.prod
+    environment:
+      - DB_WRITE_HOST=database
+      - REDIS_DB_HOST=redis
+      - REDIS_DB_PORT=6379
+      - REDIS_DB_PASSWORD=${REDIS_PASSWORD}
+    depends_on:
+      - database
+      - redis
+    restart: always
+    networks:
+      - invoiceso-net
