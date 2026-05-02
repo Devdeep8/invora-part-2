@@ -81,4 +81,9 @@ export const Errors = {
     httpStatus: 403,
     message: 'Account is locked',
   },
+  BUSINESS_NAME_REQUIRED: {
+    code: 'BUSINESS_NAME_REQUIRED',
+    httpStatus: 400,
+    message: 'Business name is required',
+  },
 }

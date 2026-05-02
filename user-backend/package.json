@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "start:dev": "nodemon",
+    "dev": "nodemon",
     "start:prod": "node dist/index.js",
     "prisma:generate": "prisma generate"
   },

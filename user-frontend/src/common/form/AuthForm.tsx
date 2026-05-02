@@ -1,10 +1,19 @@
 'use client'
-import { useForm, SubmitHandler, DefaultValues, Path, FieldValues } from 'react-hook-form'
+import { useState } from 'react'
+import { Eye, EyeOff } from 'lucide-react'
+import { useForm, SubmitHandler, DefaultValues, Path, FieldValues, Controller } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { ZodSchema } from 'zod'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import { cn } from '@/lib/utils'
 
 export interface FieldConfig<T> {
@@ -14,6 +23,7 @@ export interface FieldConfig<T> {
   placeholder?: string
   hint?: string
   required?: boolean
+  options?: { label: string; value: string }[]
 }
 
 interface AuthFormProps<T extends FieldValues> {
@@ -42,12 +52,19 @@ export function AuthForm<T extends FieldValues>({
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm<T>({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     resolver: zodResolver(schema as any),
     defaultValues,
   })
+
+  const [showPasswords, setShowPasswords] = useState<Record<string, boolean>>({})
+
+  const togglePassword = (name: string) => {
+    setShowPasswords((prev) => ({ ...prev, [name]: !prev[name] }))
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={cn('space-y-4', className)}>
@@ -57,18 +74,63 @@ export function AuthForm<T extends FieldValues>({
             {field.label}
             {field.required && <span className="text-destructive ml-1">*</span>}
           </Label>
-          <Input
-            id={String(field.name)}
-            type={field.type || 'text'}
-            placeholder={field.placeholder}
-            className={cn(
-              'h-11 bg-muted/50 border-muted-foreground/20',
-              'focus-visible:ring-primary/30 focus-visible:border-primary/50',
-              'placeholder:text-muted-foreground/40',
-              errors[field.name] && 'border-destructive/60 focus-visible:ring-destructive/30'
-            )}
-            {...register(field.name)}
-          />
+          {field.type === 'select' ? (
+            <Controller
+              control={control}
+              name={field.name}
+              render={({ field: controllerField }) => (
+                <Select onValueChange={controllerField.onChange} defaultValue={controllerField.value}>
+                  <SelectTrigger
+                    id={String(field.name)}
+                    className={cn(
+                      'h-11 bg-muted/50 border-muted-foreground/20',
+                      'focus:ring-primary/30 focus:border-primary/50',
+                      errors[field.name] && 'border-destructive/60 focus:ring-destructive/30'
+                    )}
+                  >
+                    <SelectValue placeholder={field.placeholder} />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {field.options?.map((option) => (
+                      <SelectItem key={option.value} value={option.value}>
+                        {option.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              )}
+            />
+          ) : (
+            <div className="relative">
+              <Input
+                id={String(field.name)}
+                type={field.type === 'password' ? (showPasswords[String(field.name)] ? 'text' : 'password') : (field.type || 'text')}
+                placeholder={field.placeholder}
+                className={cn(
+                  'h-11 bg-muted/50 border-muted-foreground/20',
+                  'focus-visible:ring-primary/30 focus-visible:border-primary/50',
+                  'placeholder:text-muted-foreground/40',
+                  field.type === 'password' && 'pr-10',
+                  errors[field.name] && 'border-destructive/60 focus-visible:ring-destructive/30'
+                )}
+                {...register(field.name)}
+              />
+              {field.type === 'password' && (
+                <button
+                  type="button"
+                  onClick={() => togglePassword(String(field.name))}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors focus:outline-none focus:text-foreground"
+                  tabIndex={-1}
+                >
+                  {showPasswords[String(field.name)] ? (
+                    <EyeOff className="h-4 w-4" />
+                  ) : (
+                    <Eye className="h-4 w-4" />
+                  )}
+                </button>
+              )}
+            </div>
+          )}
           {errors[field.name] && (
             <p className="text-xs text-destructive">{errors[field.name]?.message as string}</p>
           )}

@@ -15,8 +15,8 @@ if (fs.existsSync(envPath)) {
 }
 
 // Build DATABASE_URL dynamically
-const dbHost = process.env.DB_WRITE_HOST || '127.0.0.1'
-const dbPort = process.env.DB_PORT || '5432'
+const dbHost = process.env.DB_WRITE_HOST || 'localhost'
+const dbPort = process.env.DB_PORT || '5432' 
 const dbUser = process.env.DB_USERNAME || 'postgres'
 const dbPass = process.env.DB_PASSWORD || 'postgres'
 const dbName = process.env.DB_NAME || 'invoiceso_db' // Updated default to match your .env

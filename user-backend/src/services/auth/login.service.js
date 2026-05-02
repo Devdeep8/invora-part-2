@@ -21,8 +21,10 @@ export default class LoginService extends BaseService {
 
     // 1. Find user
     const user = await db.user.findUnique({
-      where: { email: email.toLowerCase() },
+      where: { email: email },
     })
+
+    console.log('email' ,email)
 
     if (!user) {
       throw new AppError(Errors.AUTH_INVALID_CREDENTIALS, { traceId: this.traceId })

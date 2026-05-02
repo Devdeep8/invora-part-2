@@ -4,6 +4,7 @@ import LoginService from "../../services/auth/login.service"
 import { setAuthCookies } from "@/src/helpers/cookie.helper.js"
 import redis from "@/src/lib/redis.js"
 import { REDIS_KEYS } from "@/src/constants/redis.constants.js"
+import prisma from "@/src/lib/prisma.js"
 
 const SEVEN_DAYS_IN_SECONDS = 7 * 24 * 60 * 60
 
@@ -31,6 +32,16 @@ export default class UserController {
       
       setAuthCookies(res, { accessToken: result.accessToken, refreshToken: result.refreshToken })
       sendResponse({ req, res, next }, result)
+    } catch (error) { next(error) }
+  }
+
+  static async getMe(req, res, next) {
+    try {
+      const user = await prisma.user.findUnique({
+        where: { id: req.context.user.id },
+        include: { business: true }
+      });
+      sendResponse({ req, res, next }, { user })
     } catch (error) { next(error) }
   }
 }

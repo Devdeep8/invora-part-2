@@ -27,7 +27,7 @@ export default class RegisterService extends BaseService {
       config.get('bcrypt.saltRounds')
     )
 
-    const { user, profile } = await prisma.$transaction(async (tx) => {
+    const { user } = await prisma.$transaction(async (tx) => {
       const existingEmail = await tx.user.findUnique({
         where: { email: email.toLowerCase() }
       })
@@ -43,7 +43,7 @@ export default class RegisterService extends BaseService {
         },
       })
 
-      return { user, profile }
+      return { user }
     })
 
     const accessToken = generateAccessToken({ userId: user.id, email: user.email })

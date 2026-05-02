@@ -14,12 +14,13 @@ import {
   PanelLeftClose,
   PanelLeft,
   LogOut,
+  Wallet,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const NAV_ITEMS = [
   { href: '/dashboard', label: 'Overview', icon: Home, exact: true },
-  { href: '/dashboard/profiles', label: 'My Profiles', icon: LayoutGrid, exact: false },
+  { href: '/dashboard/invoices', label: 'Invoices', icon: Wallet, exact: false },
   { href: '/dashboard/analytics', label: 'Analytics', icon: BarChart3, exact: false },
 ]
 
@@ -73,7 +74,7 @@ export function Sidebar() {
           </div>
           {!collapsed && (
             <span className="text-sm font-bold tracking-tight text-foreground truncate animate-slide-in">
-              Phachankoun
+              {user?.business?.name || 'Setup Business'}
             </span>
           )}
         </div>
@@ -163,13 +164,13 @@ export function Sidebar() {
           >
             <Avatar className="h-7 w-7 shrink-0 border border-border">
               <AvatarFallback className="bg-primary/10 text-primary text-xs font-semibold">
-                {user.username.charAt(0).toUpperCase()}
+                {user.business?.name ? user.business.name.charAt(0).toUpperCase() : user.email.charAt(0).toUpperCase()}
               </AvatarFallback>
             </Avatar>
             {!collapsed && (
               <>
                 <div className="flex-1 min-w-0">
-                  <p className="text-xs font-semibold text-foreground truncate">{user.username}</p>
+                  <p className="text-xs font-semibold text-foreground truncate">{user.business?.name || 'Setup Business'}</p>
                   <p className="text-[11px] text-muted-foreground truncate">{user.email}</p>
                 </div>
                 <Button

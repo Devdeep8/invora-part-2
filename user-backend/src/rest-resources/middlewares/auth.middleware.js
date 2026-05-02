@@ -32,6 +32,7 @@ export function authMiddleware() {
         if (cachedUser) {
           const user = JSON.parse(cachedUser);
           if (user.isActive) {
+            req.context.userId = user.id;
             req.context.user = user;
             return next(); // ✅ Fast path complete, no database used!
           }
@@ -62,7 +63,7 @@ export function authMiddleware() {
       // 5. Refresh Token is valid! Fetch fresh user from DB (1 DB call per 7 days)
       const user = await prisma.user.findUnique({
         where: { id: refreshDecoded.userId },
-        select: { id: true, email: true, username: true, role: true, isActive: true },
+        select: { id: true, email: true, role: true, isActive: true },
       });
 
       if (!user || !user.isActive) {

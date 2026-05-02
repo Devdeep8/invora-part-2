@@ -44,8 +44,6 @@ export function DashboardProvider({ children }: { children: React.ReactNode }) {
       try {
         const me = await userService.getMe()
         setUser(me)
-        const myProfiles = await profileService.getProfiles()
-        setProfiles(myProfiles)
       } catch {
         Cookies.remove('accessToken')
         router.push('/login')

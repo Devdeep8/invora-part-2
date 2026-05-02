@@ -31,13 +31,13 @@ export function useAuth() {
     }
   }
 
-  const register = async (email: string, username: string, password: string) => {
+  const register = async (email: string, password: string) => {
     setLoading(true)
     setError(null)
     try {
-      const res = await authService.register({ email, username, password })
+      const res = await authService.register({ email, password })
       setUser(res.data.user)
-      router.push('/dashboard')
+      router.push('/onboarding')
     } catch (err) {
       handleError(err)
     } finally {
@@ -51,5 +51,14 @@ export function useAuth() {
     router.push('/login')
   }
 
-  return { user, loading, error, login, register, logout }
+  const fetchMe = async () => {
+    try {
+      const res = await authService.getMe()
+      setUser(res.data.user)
+    } catch (err) {
+      handleError(err)
+    }
+  }
+
+  return { user, loading, error, login, register, logout, fetchMe }
 }

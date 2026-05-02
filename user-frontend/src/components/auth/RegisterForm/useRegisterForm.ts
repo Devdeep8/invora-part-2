@@ -14,14 +14,6 @@ export function useRegisterForm() {
       required: true,
     },
     {
-      name: 'username',
-      label: 'Username',
-      type: 'text',
-      placeholder: 'yourname',
-      hint: 'Lowercase letters, numbers and underscores only',
-      required: true,
-    },
-    {
       name: 'password',
       label: 'Password',
       type: 'password',
@@ -32,7 +24,7 @@ export function useRegisterForm() {
   ]
 
   const onSubmit = async (data: RegisterSchema) => {
-    await registerUser(data.email, data.username, data.password)
+    await registerUser(data.email, data.password)
   }
 
   return { fields, onSubmit, loading, error, schema: registerSchema }

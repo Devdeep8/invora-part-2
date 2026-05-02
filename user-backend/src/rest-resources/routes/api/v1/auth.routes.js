@@ -10,5 +10,6 @@ authRoutes.route('/register').post(contextMiddleware(), UserController.register)
 authRoutes.route('/login').post(contextMiddleware(), UserController.login)
 
 // Protected Routes (Need context + auth verification)
+authRoutes.route('/me').get(contextMiddleware(), authMiddleware(), UserController.getMe)
 
 export default authRoutes

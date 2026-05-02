@@ -1,7 +1,7 @@
 export interface User {
   id: number
   email: string
-  username: string
+  business?: any
   role: 'USER' | 'ADMIN'
   authProvider: 'LOCAL' | 'GOOGLE'
   isActive: boolean
@@ -37,6 +37,5 @@ export interface LoginPayload {
 
 export interface RegisterPayload {
   email: string
-  username: string
   password: string
 }
