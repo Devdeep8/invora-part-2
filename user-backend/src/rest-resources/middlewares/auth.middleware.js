@@ -34,7 +34,14 @@ export function authMiddleware() {
           if (user.isActive) {
             req.context.userId = user.id;
             req.context.user = user;
-            return next(); // ✅ Fast path complete, no database used!
+            if (user.business?.id) {
+              req.context.businessId = user.business.id;
+              return next();
+            }
+            // Fallback: fetch business
+            const business = await prisma.business.findUnique({ where: { userId: user.id } });
+            if (business) req.context.businessId = business.id;
+            return next();
           }
         }
       }
@@ -83,6 +90,10 @@ export function authMiddleware() {
 
       // 9. Inject user into context
       req.context.user = user;
+      
+      const business = await prisma.business.findUnique({ where: { userId: user.id } });
+      if (business) req.context.businessId = business.id;
+
       next();
 
     } catch (error) {

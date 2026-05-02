@@ -61,6 +61,8 @@ export type BusinessMinAggregateOutputType = {
   bankAccountNo: string | null
   bankIfsc: string | null
   bankName: string | null
+  razorpayKeyId: string | null
+  razorpayKeySecret: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -86,6 +88,8 @@ export type BusinessMaxAggregateOutputType = {
   bankAccountNo: string | null
   bankIfsc: string | null
   bankName: string | null
+  razorpayKeyId: string | null
+  razorpayKeySecret: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -111,6 +115,8 @@ export type BusinessCountAggregateOutputType = {
   bankAccountNo: number
   bankIfsc: number
   bankName: number
+  razorpayKeyId: number
+  razorpayKeySecret: number
   createdAt: number
   updatedAt: number
   tax: number
@@ -153,6 +159,8 @@ export type BusinessMinAggregateInputType = {
   bankAccountNo?: true
   bankIfsc?: true
   bankName?: true
+  razorpayKeyId?: true
+  razorpayKeySecret?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -178,6 +186,8 @@ export type BusinessMaxAggregateInputType = {
   bankAccountNo?: true
   bankIfsc?: true
   bankName?: true
+  razorpayKeyId?: true
+  razorpayKeySecret?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -203,6 +213,8 @@ export type BusinessCountAggregateInputType = {
   bankAccountNo?: true
   bankIfsc?: true
   bankName?: true
+  razorpayKeyId?: true
+  razorpayKeySecret?: true
   createdAt?: true
   updatedAt?: true
   tax?: true
@@ -316,6 +328,8 @@ export type BusinessGroupByOutputType = {
   bankAccountNo: string | null
   bankIfsc: string | null
   bankName: string | null
+  razorpayKeyId: string | null
+  razorpayKeySecret: string | null
   createdAt: Date
   updatedAt: Date
   tax: runtime.JsonValue | null
@@ -365,12 +379,16 @@ export type BusinessWhereInput = {
   bankAccountNo?: Prisma.StringNullableFilter<"Business"> | string | null
   bankIfsc?: Prisma.StringNullableFilter<"Business"> | string | null
   bankName?: Prisma.StringNullableFilter<"Business"> | string | null
+  razorpayKeyId?: Prisma.StringNullableFilter<"Business"> | string | null
+  razorpayKeySecret?: Prisma.StringNullableFilter<"Business"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Business"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Business"> | Date | string
   tax?: Prisma.JsonNullableFilter<"Business">
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   clients?: Prisma.ClientListRelationFilter
   invoices?: Prisma.InvoiceListRelationFilter
+  emailLogs?: Prisma.EmailLogListRelationFilter
+  invoiceEvents?: Prisma.InvoiceEventListRelationFilter
 }
 
 export type BusinessOrderByWithRelationInput = {
@@ -394,12 +412,16 @@ export type BusinessOrderByWithRelationInput = {
   bankAccountNo?: Prisma.SortOrderInput | Prisma.SortOrder
   bankIfsc?: Prisma.SortOrderInput | Prisma.SortOrder
   bankName?: Prisma.SortOrderInput | Prisma.SortOrder
+  razorpayKeyId?: Prisma.SortOrderInput | Prisma.SortOrder
+  razorpayKeySecret?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   tax?: Prisma.SortOrderInput | Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
   clients?: Prisma.ClientOrderByRelationAggregateInput
   invoices?: Prisma.InvoiceOrderByRelationAggregateInput
+  emailLogs?: Prisma.EmailLogOrderByRelationAggregateInput
+  invoiceEvents?: Prisma.InvoiceEventOrderByRelationAggregateInput
 }
 
 export type BusinessWhereUniqueInput = Prisma.AtLeast<{
@@ -426,12 +448,16 @@ export type BusinessWhereUniqueInput = Prisma.AtLeast<{
   bankAccountNo?: Prisma.StringNullableFilter<"Business"> | string | null
   bankIfsc?: Prisma.StringNullableFilter<"Business"> | string | null
   bankName?: Prisma.StringNullableFilter<"Business"> | string | null
+  razorpayKeyId?: Prisma.StringNullableFilter<"Business"> | string | null
+  razorpayKeySecret?: Prisma.StringNullableFilter<"Business"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Business"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Business"> | Date | string
   tax?: Prisma.JsonNullableFilter<"Business">
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   clients?: Prisma.ClientListRelationFilter
   invoices?: Prisma.InvoiceListRelationFilter
+  emailLogs?: Prisma.EmailLogListRelationFilter
+  invoiceEvents?: Prisma.InvoiceEventListRelationFilter
 }, "id" | "userId">
 
 export type BusinessOrderByWithAggregationInput = {
@@ -455,6 +481,8 @@ export type BusinessOrderByWithAggregationInput = {
   bankAccountNo?: Prisma.SortOrderInput | Prisma.SortOrder
   bankIfsc?: Prisma.SortOrderInput | Prisma.SortOrder
   bankName?: Prisma.SortOrderInput | Prisma.SortOrder
+  razorpayKeyId?: Prisma.SortOrderInput | Prisma.SortOrder
+  razorpayKeySecret?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   tax?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -489,6 +517,8 @@ export type BusinessScalarWhereWithAggregatesInput = {
   bankAccountNo?: Prisma.StringNullableWithAggregatesFilter<"Business"> | string | null
   bankIfsc?: Prisma.StringNullableWithAggregatesFilter<"Business"> | string | null
   bankName?: Prisma.StringNullableWithAggregatesFilter<"Business"> | string | null
+  razorpayKeyId?: Prisma.StringNullableWithAggregatesFilter<"Business"> | string | null
+  razorpayKeySecret?: Prisma.StringNullableWithAggregatesFilter<"Business"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Business"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Business"> | Date | string
   tax?: Prisma.JsonNullableWithAggregatesFilter<"Business">
@@ -513,12 +543,16 @@ export type BusinessCreateInput = {
   bankAccountNo?: string | null
   bankIfsc?: string | null
   bankName?: string | null
+  razorpayKeyId?: string | null
+  razorpayKeySecret?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   tax?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   user: Prisma.UserCreateNestedOneWithoutBusinessInput
   clients?: Prisma.ClientCreateNestedManyWithoutBusinessInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutBusinessInput
+  emailLogs?: Prisma.EmailLogCreateNestedManyWithoutBusinessInput
+  invoiceEvents?: Prisma.InvoiceEventCreateNestedManyWithoutBusinessInput
 }
 
 export type BusinessUncheckedCreateInput = {
@@ -542,11 +576,15 @@ export type BusinessUncheckedCreateInput = {
   bankAccountNo?: string | null
   bankIfsc?: string | null
   bankName?: string | null
+  razorpayKeyId?: string | null
+  razorpayKeySecret?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   tax?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   clients?: Prisma.ClientUncheckedCreateNestedManyWithoutBusinessInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutBusinessInput
+  emailLogs?: Prisma.EmailLogUncheckedCreateNestedManyWithoutBusinessInput
+  invoiceEvents?: Prisma.InvoiceEventUncheckedCreateNestedManyWithoutBusinessInput
 }
 
 export type BusinessUpdateInput = {
@@ -568,12 +606,16 @@ export type BusinessUpdateInput = {
   bankAccountNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bankIfsc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bankName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayKeySecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tax?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   user?: Prisma.UserUpdateOneRequiredWithoutBusinessNestedInput
   clients?: Prisma.ClientUpdateManyWithoutBusinessNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutBusinessNestedInput
+  emailLogs?: Prisma.EmailLogUpdateManyWithoutBusinessNestedInput
+  invoiceEvents?: Prisma.InvoiceEventUpdateManyWithoutBusinessNestedInput
 }
 
 export type BusinessUncheckedUpdateInput = {
@@ -597,11 +639,15 @@ export type BusinessUncheckedUpdateInput = {
   bankAccountNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bankIfsc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bankName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayKeySecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tax?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   clients?: Prisma.ClientUncheckedUpdateManyWithoutBusinessNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutBusinessNestedInput
+  emailLogs?: Prisma.EmailLogUncheckedUpdateManyWithoutBusinessNestedInput
+  invoiceEvents?: Prisma.InvoiceEventUncheckedUpdateManyWithoutBusinessNestedInput
 }
 
 export type BusinessCreateManyInput = {
@@ -625,6 +671,8 @@ export type BusinessCreateManyInput = {
   bankAccountNo?: string | null
   bankIfsc?: string | null
   bankName?: string | null
+  razorpayKeyId?: string | null
+  razorpayKeySecret?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   tax?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -649,6 +697,8 @@ export type BusinessUpdateManyMutationInput = {
   bankAccountNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bankIfsc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bankName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayKeySecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tax?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -675,6 +725,8 @@ export type BusinessUncheckedUpdateManyInput = {
   bankAccountNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bankIfsc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bankName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayKeySecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tax?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
@@ -706,6 +758,8 @@ export type BusinessCountOrderByAggregateInput = {
   bankAccountNo?: Prisma.SortOrder
   bankIfsc?: Prisma.SortOrder
   bankName?: Prisma.SortOrder
+  razorpayKeyId?: Prisma.SortOrder
+  razorpayKeySecret?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   tax?: Prisma.SortOrder
@@ -739,6 +793,8 @@ export type BusinessMaxOrderByAggregateInput = {
   bankAccountNo?: Prisma.SortOrder
   bankIfsc?: Prisma.SortOrder
   bankName?: Prisma.SortOrder
+  razorpayKeyId?: Prisma.SortOrder
+  razorpayKeySecret?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -764,6 +820,8 @@ export type BusinessMinOrderByAggregateInput = {
   bankAccountNo?: Prisma.SortOrder
   bankIfsc?: Prisma.SortOrder
   bankName?: Prisma.SortOrder
+  razorpayKeyId?: Prisma.SortOrder
+  razorpayKeySecret?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -848,6 +906,34 @@ export type BusinessUpdateOneRequiredWithoutInvoicesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.BusinessUpdateToOneWithWhereWithoutInvoicesInput, Prisma.BusinessUpdateWithoutInvoicesInput>, Prisma.BusinessUncheckedUpdateWithoutInvoicesInput>
 }
 
+export type BusinessCreateNestedOneWithoutEmailLogsInput = {
+  create?: Prisma.XOR<Prisma.BusinessCreateWithoutEmailLogsInput, Prisma.BusinessUncheckedCreateWithoutEmailLogsInput>
+  connectOrCreate?: Prisma.BusinessCreateOrConnectWithoutEmailLogsInput
+  connect?: Prisma.BusinessWhereUniqueInput
+}
+
+export type BusinessUpdateOneRequiredWithoutEmailLogsNestedInput = {
+  create?: Prisma.XOR<Prisma.BusinessCreateWithoutEmailLogsInput, Prisma.BusinessUncheckedCreateWithoutEmailLogsInput>
+  connectOrCreate?: Prisma.BusinessCreateOrConnectWithoutEmailLogsInput
+  upsert?: Prisma.BusinessUpsertWithoutEmailLogsInput
+  connect?: Prisma.BusinessWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.BusinessUpdateToOneWithWhereWithoutEmailLogsInput, Prisma.BusinessUpdateWithoutEmailLogsInput>, Prisma.BusinessUncheckedUpdateWithoutEmailLogsInput>
+}
+
+export type BusinessCreateNestedOneWithoutInvoiceEventsInput = {
+  create?: Prisma.XOR<Prisma.BusinessCreateWithoutInvoiceEventsInput, Prisma.BusinessUncheckedCreateWithoutInvoiceEventsInput>
+  connectOrCreate?: Prisma.BusinessCreateOrConnectWithoutInvoiceEventsInput
+  connect?: Prisma.BusinessWhereUniqueInput
+}
+
+export type BusinessUpdateOneRequiredWithoutInvoiceEventsNestedInput = {
+  create?: Prisma.XOR<Prisma.BusinessCreateWithoutInvoiceEventsInput, Prisma.BusinessUncheckedCreateWithoutInvoiceEventsInput>
+  connectOrCreate?: Prisma.BusinessCreateOrConnectWithoutInvoiceEventsInput
+  upsert?: Prisma.BusinessUpsertWithoutInvoiceEventsInput
+  connect?: Prisma.BusinessWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.BusinessUpdateToOneWithWhereWithoutInvoiceEventsInput, Prisma.BusinessUpdateWithoutInvoiceEventsInput>, Prisma.BusinessUncheckedUpdateWithoutInvoiceEventsInput>
+}
+
 export type BusinessCreateWithoutUserInput = {
   name: string
   logoUrl?: string | null
@@ -867,11 +953,15 @@ export type BusinessCreateWithoutUserInput = {
   bankAccountNo?: string | null
   bankIfsc?: string | null
   bankName?: string | null
+  razorpayKeyId?: string | null
+  razorpayKeySecret?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   tax?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   clients?: Prisma.ClientCreateNestedManyWithoutBusinessInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutBusinessInput
+  emailLogs?: Prisma.EmailLogCreateNestedManyWithoutBusinessInput
+  invoiceEvents?: Prisma.InvoiceEventCreateNestedManyWithoutBusinessInput
 }
 
 export type BusinessUncheckedCreateWithoutUserInput = {
@@ -894,11 +984,15 @@ export type BusinessUncheckedCreateWithoutUserInput = {
   bankAccountNo?: string | null
   bankIfsc?: string | null
   bankName?: string | null
+  razorpayKeyId?: string | null
+  razorpayKeySecret?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   tax?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   clients?: Prisma.ClientUncheckedCreateNestedManyWithoutBusinessInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutBusinessInput
+  emailLogs?: Prisma.EmailLogUncheckedCreateNestedManyWithoutBusinessInput
+  invoiceEvents?: Prisma.InvoiceEventUncheckedCreateNestedManyWithoutBusinessInput
 }
 
 export type BusinessCreateOrConnectWithoutUserInput = {
@@ -936,11 +1030,15 @@ export type BusinessUpdateWithoutUserInput = {
   bankAccountNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bankIfsc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bankName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayKeySecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tax?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   clients?: Prisma.ClientUpdateManyWithoutBusinessNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutBusinessNestedInput
+  emailLogs?: Prisma.EmailLogUpdateManyWithoutBusinessNestedInput
+  invoiceEvents?: Prisma.InvoiceEventUpdateManyWithoutBusinessNestedInput
 }
 
 export type BusinessUncheckedUpdateWithoutUserInput = {
@@ -963,11 +1061,15 @@ export type BusinessUncheckedUpdateWithoutUserInput = {
   bankAccountNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bankIfsc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bankName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayKeySecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tax?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   clients?: Prisma.ClientUncheckedUpdateManyWithoutBusinessNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutBusinessNestedInput
+  emailLogs?: Prisma.EmailLogUncheckedUpdateManyWithoutBusinessNestedInput
+  invoiceEvents?: Prisma.InvoiceEventUncheckedUpdateManyWithoutBusinessNestedInput
 }
 
 export type BusinessCreateWithoutClientsInput = {
@@ -989,11 +1091,15 @@ export type BusinessCreateWithoutClientsInput = {
   bankAccountNo?: string | null
   bankIfsc?: string | null
   bankName?: string | null
+  razorpayKeyId?: string | null
+  razorpayKeySecret?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   tax?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   user: Prisma.UserCreateNestedOneWithoutBusinessInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutBusinessInput
+  emailLogs?: Prisma.EmailLogCreateNestedManyWithoutBusinessInput
+  invoiceEvents?: Prisma.InvoiceEventCreateNestedManyWithoutBusinessInput
 }
 
 export type BusinessUncheckedCreateWithoutClientsInput = {
@@ -1017,10 +1123,14 @@ export type BusinessUncheckedCreateWithoutClientsInput = {
   bankAccountNo?: string | null
   bankIfsc?: string | null
   bankName?: string | null
+  razorpayKeyId?: string | null
+  razorpayKeySecret?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   tax?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutBusinessInput
+  emailLogs?: Prisma.EmailLogUncheckedCreateNestedManyWithoutBusinessInput
+  invoiceEvents?: Prisma.InvoiceEventUncheckedCreateNestedManyWithoutBusinessInput
 }
 
 export type BusinessCreateOrConnectWithoutClientsInput = {
@@ -1058,11 +1168,15 @@ export type BusinessUpdateWithoutClientsInput = {
   bankAccountNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bankIfsc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bankName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayKeySecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tax?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   user?: Prisma.UserUpdateOneRequiredWithoutBusinessNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutBusinessNestedInput
+  emailLogs?: Prisma.EmailLogUpdateManyWithoutBusinessNestedInput
+  invoiceEvents?: Prisma.InvoiceEventUpdateManyWithoutBusinessNestedInput
 }
 
 export type BusinessUncheckedUpdateWithoutClientsInput = {
@@ -1086,10 +1200,14 @@ export type BusinessUncheckedUpdateWithoutClientsInput = {
   bankAccountNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bankIfsc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bankName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayKeySecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tax?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutBusinessNestedInput
+  emailLogs?: Prisma.EmailLogUncheckedUpdateManyWithoutBusinessNestedInput
+  invoiceEvents?: Prisma.InvoiceEventUncheckedUpdateManyWithoutBusinessNestedInput
 }
 
 export type BusinessCreateWithoutInvoicesInput = {
@@ -1111,11 +1229,15 @@ export type BusinessCreateWithoutInvoicesInput = {
   bankAccountNo?: string | null
   bankIfsc?: string | null
   bankName?: string | null
+  razorpayKeyId?: string | null
+  razorpayKeySecret?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   tax?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   user: Prisma.UserCreateNestedOneWithoutBusinessInput
   clients?: Prisma.ClientCreateNestedManyWithoutBusinessInput
+  emailLogs?: Prisma.EmailLogCreateNestedManyWithoutBusinessInput
+  invoiceEvents?: Prisma.InvoiceEventCreateNestedManyWithoutBusinessInput
 }
 
 export type BusinessUncheckedCreateWithoutInvoicesInput = {
@@ -1139,10 +1261,14 @@ export type BusinessUncheckedCreateWithoutInvoicesInput = {
   bankAccountNo?: string | null
   bankIfsc?: string | null
   bankName?: string | null
+  razorpayKeyId?: string | null
+  razorpayKeySecret?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   tax?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   clients?: Prisma.ClientUncheckedCreateNestedManyWithoutBusinessInput
+  emailLogs?: Prisma.EmailLogUncheckedCreateNestedManyWithoutBusinessInput
+  invoiceEvents?: Prisma.InvoiceEventUncheckedCreateNestedManyWithoutBusinessInput
 }
 
 export type BusinessCreateOrConnectWithoutInvoicesInput = {
@@ -1180,11 +1306,15 @@ export type BusinessUpdateWithoutInvoicesInput = {
   bankAccountNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bankIfsc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bankName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayKeySecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tax?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   user?: Prisma.UserUpdateOneRequiredWithoutBusinessNestedInput
   clients?: Prisma.ClientUpdateManyWithoutBusinessNestedInput
+  emailLogs?: Prisma.EmailLogUpdateManyWithoutBusinessNestedInput
+  invoiceEvents?: Prisma.InvoiceEventUpdateManyWithoutBusinessNestedInput
 }
 
 export type BusinessUncheckedUpdateWithoutInvoicesInput = {
@@ -1208,10 +1338,290 @@ export type BusinessUncheckedUpdateWithoutInvoicesInput = {
   bankAccountNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bankIfsc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bankName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayKeySecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tax?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   clients?: Prisma.ClientUncheckedUpdateManyWithoutBusinessNestedInput
+  emailLogs?: Prisma.EmailLogUncheckedUpdateManyWithoutBusinessNestedInput
+  invoiceEvents?: Prisma.InvoiceEventUncheckedUpdateManyWithoutBusinessNestedInput
+}
+
+export type BusinessCreateWithoutEmailLogsInput = {
+  name: string
+  logoUrl?: string | null
+  address?: string | null
+  city?: string | null
+  state?: string | null
+  country?: string | null
+  zipCode?: string | null
+  phone?: string | null
+  taxId?: string | null
+  website?: string | null
+  currency?: string
+  taxRate?: number
+  invoicePrefix?: string
+  nextInvoiceNum?: number
+  upiId?: string | null
+  bankAccountNo?: string | null
+  bankIfsc?: string | null
+  bankName?: string | null
+  razorpayKeyId?: string | null
+  razorpayKeySecret?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  tax?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  user: Prisma.UserCreateNestedOneWithoutBusinessInput
+  clients?: Prisma.ClientCreateNestedManyWithoutBusinessInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutBusinessInput
+  invoiceEvents?: Prisma.InvoiceEventCreateNestedManyWithoutBusinessInput
+}
+
+export type BusinessUncheckedCreateWithoutEmailLogsInput = {
+  id?: number
+  userId: number
+  name: string
+  logoUrl?: string | null
+  address?: string | null
+  city?: string | null
+  state?: string | null
+  country?: string | null
+  zipCode?: string | null
+  phone?: string | null
+  taxId?: string | null
+  website?: string | null
+  currency?: string
+  taxRate?: number
+  invoicePrefix?: string
+  nextInvoiceNum?: number
+  upiId?: string | null
+  bankAccountNo?: string | null
+  bankIfsc?: string | null
+  bankName?: string | null
+  razorpayKeyId?: string | null
+  razorpayKeySecret?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  tax?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutBusinessInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutBusinessInput
+  invoiceEvents?: Prisma.InvoiceEventUncheckedCreateNestedManyWithoutBusinessInput
+}
+
+export type BusinessCreateOrConnectWithoutEmailLogsInput = {
+  where: Prisma.BusinessWhereUniqueInput
+  create: Prisma.XOR<Prisma.BusinessCreateWithoutEmailLogsInput, Prisma.BusinessUncheckedCreateWithoutEmailLogsInput>
+}
+
+export type BusinessUpsertWithoutEmailLogsInput = {
+  update: Prisma.XOR<Prisma.BusinessUpdateWithoutEmailLogsInput, Prisma.BusinessUncheckedUpdateWithoutEmailLogsInput>
+  create: Prisma.XOR<Prisma.BusinessCreateWithoutEmailLogsInput, Prisma.BusinessUncheckedCreateWithoutEmailLogsInput>
+  where?: Prisma.BusinessWhereInput
+}
+
+export type BusinessUpdateToOneWithWhereWithoutEmailLogsInput = {
+  where?: Prisma.BusinessWhereInput
+  data: Prisma.XOR<Prisma.BusinessUpdateWithoutEmailLogsInput, Prisma.BusinessUncheckedUpdateWithoutEmailLogsInput>
+}
+
+export type BusinessUpdateWithoutEmailLogsInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  zipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  taxRate?: Prisma.FloatFieldUpdateOperationsInput | number
+  invoicePrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  nextInvoiceNum?: Prisma.IntFieldUpdateOperationsInput | number
+  upiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bankAccountNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bankIfsc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bankName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayKeySecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tax?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  user?: Prisma.UserUpdateOneRequiredWithoutBusinessNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutBusinessNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutBusinessNestedInput
+  invoiceEvents?: Prisma.InvoiceEventUpdateManyWithoutBusinessNestedInput
+}
+
+export type BusinessUncheckedUpdateWithoutEmailLogsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  zipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  taxRate?: Prisma.FloatFieldUpdateOperationsInput | number
+  invoicePrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  nextInvoiceNum?: Prisma.IntFieldUpdateOperationsInput | number
+  upiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bankAccountNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bankIfsc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bankName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayKeySecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tax?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutBusinessNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutBusinessNestedInput
+  invoiceEvents?: Prisma.InvoiceEventUncheckedUpdateManyWithoutBusinessNestedInput
+}
+
+export type BusinessCreateWithoutInvoiceEventsInput = {
+  name: string
+  logoUrl?: string | null
+  address?: string | null
+  city?: string | null
+  state?: string | null
+  country?: string | null
+  zipCode?: string | null
+  phone?: string | null
+  taxId?: string | null
+  website?: string | null
+  currency?: string
+  taxRate?: number
+  invoicePrefix?: string
+  nextInvoiceNum?: number
+  upiId?: string | null
+  bankAccountNo?: string | null
+  bankIfsc?: string | null
+  bankName?: string | null
+  razorpayKeyId?: string | null
+  razorpayKeySecret?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  tax?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  user: Prisma.UserCreateNestedOneWithoutBusinessInput
+  clients?: Prisma.ClientCreateNestedManyWithoutBusinessInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutBusinessInput
+  emailLogs?: Prisma.EmailLogCreateNestedManyWithoutBusinessInput
+}
+
+export type BusinessUncheckedCreateWithoutInvoiceEventsInput = {
+  id?: number
+  userId: number
+  name: string
+  logoUrl?: string | null
+  address?: string | null
+  city?: string | null
+  state?: string | null
+  country?: string | null
+  zipCode?: string | null
+  phone?: string | null
+  taxId?: string | null
+  website?: string | null
+  currency?: string
+  taxRate?: number
+  invoicePrefix?: string
+  nextInvoiceNum?: number
+  upiId?: string | null
+  bankAccountNo?: string | null
+  bankIfsc?: string | null
+  bankName?: string | null
+  razorpayKeyId?: string | null
+  razorpayKeySecret?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  tax?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutBusinessInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutBusinessInput
+  emailLogs?: Prisma.EmailLogUncheckedCreateNestedManyWithoutBusinessInput
+}
+
+export type BusinessCreateOrConnectWithoutInvoiceEventsInput = {
+  where: Prisma.BusinessWhereUniqueInput
+  create: Prisma.XOR<Prisma.BusinessCreateWithoutInvoiceEventsInput, Prisma.BusinessUncheckedCreateWithoutInvoiceEventsInput>
+}
+
+export type BusinessUpsertWithoutInvoiceEventsInput = {
+  update: Prisma.XOR<Prisma.BusinessUpdateWithoutInvoiceEventsInput, Prisma.BusinessUncheckedUpdateWithoutInvoiceEventsInput>
+  create: Prisma.XOR<Prisma.BusinessCreateWithoutInvoiceEventsInput, Prisma.BusinessUncheckedCreateWithoutInvoiceEventsInput>
+  where?: Prisma.BusinessWhereInput
+}
+
+export type BusinessUpdateToOneWithWhereWithoutInvoiceEventsInput = {
+  where?: Prisma.BusinessWhereInput
+  data: Prisma.XOR<Prisma.BusinessUpdateWithoutInvoiceEventsInput, Prisma.BusinessUncheckedUpdateWithoutInvoiceEventsInput>
+}
+
+export type BusinessUpdateWithoutInvoiceEventsInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  zipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  taxRate?: Prisma.FloatFieldUpdateOperationsInput | number
+  invoicePrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  nextInvoiceNum?: Prisma.IntFieldUpdateOperationsInput | number
+  upiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bankAccountNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bankIfsc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bankName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayKeySecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tax?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  user?: Prisma.UserUpdateOneRequiredWithoutBusinessNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutBusinessNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutBusinessNestedInput
+  emailLogs?: Prisma.EmailLogUpdateManyWithoutBusinessNestedInput
+}
+
+export type BusinessUncheckedUpdateWithoutInvoiceEventsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  userId?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  logoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  city?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  state?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  country?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  zipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  taxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  website?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  currency?: Prisma.StringFieldUpdateOperationsInput | string
+  taxRate?: Prisma.FloatFieldUpdateOperationsInput | number
+  invoicePrefix?: Prisma.StringFieldUpdateOperationsInput | string
+  nextInvoiceNum?: Prisma.IntFieldUpdateOperationsInput | number
+  upiId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bankAccountNo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bankIfsc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bankName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayKeyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  razorpayKeySecret?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tax?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutBusinessNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutBusinessNestedInput
+  emailLogs?: Prisma.EmailLogUncheckedUpdateManyWithoutBusinessNestedInput
 }
 
 
@@ -1222,11 +1632,15 @@ export type BusinessUncheckedUpdateWithoutInvoicesInput = {
 export type BusinessCountOutputType = {
   clients: number
   invoices: number
+  emailLogs: number
+  invoiceEvents: number
 }
 
 export type BusinessCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   clients?: boolean | BusinessCountOutputTypeCountClientsArgs
   invoices?: boolean | BusinessCountOutputTypeCountInvoicesArgs
+  emailLogs?: boolean | BusinessCountOutputTypeCountEmailLogsArgs
+  invoiceEvents?: boolean | BusinessCountOutputTypeCountInvoiceEventsArgs
 }
 
 /**
@@ -1253,6 +1667,20 @@ export type BusinessCountOutputTypeCountInvoicesArgs<ExtArgs extends runtime.Typ
   where?: Prisma.InvoiceWhereInput
 }
 
+/**
+ * BusinessCountOutputType without action
+ */
+export type BusinessCountOutputTypeCountEmailLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EmailLogWhereInput
+}
+
+/**
+ * BusinessCountOutputType without action
+ */
+export type BusinessCountOutputTypeCountInvoiceEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.InvoiceEventWhereInput
+}
+
 
 export type BusinessSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1275,12 +1703,16 @@ export type BusinessSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   bankAccountNo?: boolean
   bankIfsc?: boolean
   bankName?: boolean
+  razorpayKeyId?: boolean
+  razorpayKeySecret?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   tax?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   clients?: boolean | Prisma.Business$clientsArgs<ExtArgs>
   invoices?: boolean | Prisma.Business$invoicesArgs<ExtArgs>
+  emailLogs?: boolean | Prisma.Business$emailLogsArgs<ExtArgs>
+  invoiceEvents?: boolean | Prisma.Business$invoiceEventsArgs<ExtArgs>
   _count?: boolean | Prisma.BusinessCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["business"]>
 
@@ -1305,6 +1737,8 @@ export type BusinessSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   bankAccountNo?: boolean
   bankIfsc?: boolean
   bankName?: boolean
+  razorpayKeyId?: boolean
+  razorpayKeySecret?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   tax?: boolean
@@ -1332,6 +1766,8 @@ export type BusinessSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   bankAccountNo?: boolean
   bankIfsc?: boolean
   bankName?: boolean
+  razorpayKeyId?: boolean
+  razorpayKeySecret?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   tax?: boolean
@@ -1359,16 +1795,20 @@ export type BusinessSelectScalar = {
   bankAccountNo?: boolean
   bankIfsc?: boolean
   bankName?: boolean
+  razorpayKeyId?: boolean
+  razorpayKeySecret?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   tax?: boolean
 }
 
-export type BusinessOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "name" | "logoUrl" | "address" | "city" | "state" | "country" | "zipCode" | "phone" | "taxId" | "website" | "currency" | "taxRate" | "invoicePrefix" | "nextInvoiceNum" | "upiId" | "bankAccountNo" | "bankIfsc" | "bankName" | "createdAt" | "updatedAt" | "tax", ExtArgs["result"]["business"]>
+export type BusinessOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "name" | "logoUrl" | "address" | "city" | "state" | "country" | "zipCode" | "phone" | "taxId" | "website" | "currency" | "taxRate" | "invoicePrefix" | "nextInvoiceNum" | "upiId" | "bankAccountNo" | "bankIfsc" | "bankName" | "razorpayKeyId" | "razorpayKeySecret" | "createdAt" | "updatedAt" | "tax", ExtArgs["result"]["business"]>
 export type BusinessInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   clients?: boolean | Prisma.Business$clientsArgs<ExtArgs>
   invoices?: boolean | Prisma.Business$invoicesArgs<ExtArgs>
+  emailLogs?: boolean | Prisma.Business$emailLogsArgs<ExtArgs>
+  invoiceEvents?: boolean | Prisma.Business$invoiceEventsArgs<ExtArgs>
   _count?: boolean | Prisma.BusinessCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type BusinessIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1384,6 +1824,8 @@ export type $BusinessPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     user: Prisma.$UserPayload<ExtArgs>
     clients: Prisma.$ClientPayload<ExtArgs>[]
     invoices: Prisma.$InvoicePayload<ExtArgs>[]
+    emailLogs: Prisma.$EmailLogPayload<ExtArgs>[]
+    invoiceEvents: Prisma.$InvoiceEventPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1406,6 +1848,8 @@ export type $BusinessPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     bankAccountNo: string | null
     bankIfsc: string | null
     bankName: string | null
+    razorpayKeyId: string | null
+    razorpayKeySecret: string | null
     createdAt: Date
     updatedAt: Date
     tax: runtime.JsonValue | null
@@ -1806,6 +2250,8 @@ export interface Prisma__BusinessClient<T, Null = never, ExtArgs extends runtime
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   clients<T extends Prisma.Business$clientsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Business$clientsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ClientPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   invoices<T extends Prisma.Business$invoicesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Business$invoicesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  emailLogs<T extends Prisma.Business$emailLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Business$emailLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmailLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  invoiceEvents<T extends Prisma.Business$invoiceEventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Business$invoiceEventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvoiceEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1855,6 +2301,8 @@ export interface BusinessFieldRefs {
   readonly bankAccountNo: Prisma.FieldRef<"Business", 'String'>
   readonly bankIfsc: Prisma.FieldRef<"Business", 'String'>
   readonly bankName: Prisma.FieldRef<"Business", 'String'>
+  readonly razorpayKeyId: Prisma.FieldRef<"Business", 'String'>
+  readonly razorpayKeySecret: Prisma.FieldRef<"Business", 'String'>
   readonly createdAt: Prisma.FieldRef<"Business", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Business", 'DateTime'>
   readonly tax: Prisma.FieldRef<"Business", 'Json'>
@@ -2304,6 +2752,54 @@ export type Business$invoicesArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   distinct?: Prisma.InvoiceScalarFieldEnum | Prisma.InvoiceScalarFieldEnum[]
+}
+
+/**
+ * Business.emailLogs
+ */
+export type Business$emailLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EmailLog
+   */
+  select?: Prisma.EmailLogSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the EmailLog
+   */
+  omit?: Prisma.EmailLogOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EmailLogInclude<ExtArgs> | null
+  where?: Prisma.EmailLogWhereInput
+  orderBy?: Prisma.EmailLogOrderByWithRelationInput | Prisma.EmailLogOrderByWithRelationInput[]
+  cursor?: Prisma.EmailLogWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EmailLogScalarFieldEnum | Prisma.EmailLogScalarFieldEnum[]
+}
+
+/**
+ * Business.invoiceEvents
+ */
+export type Business$invoiceEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the InvoiceEvent
+   */
+  select?: Prisma.InvoiceEventSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the InvoiceEvent
+   */
+  omit?: Prisma.InvoiceEventOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InvoiceEventInclude<ExtArgs> | null
+  where?: Prisma.InvoiceEventWhereInput
+  orderBy?: Prisma.InvoiceEventOrderByWithRelationInput | Prisma.InvoiceEventOrderByWithRelationInput[]
+  cursor?: Prisma.InvoiceEventWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.InvoiceEventScalarFieldEnum | Prisma.InvoiceEventScalarFieldEnum[]
 }
 
 /**

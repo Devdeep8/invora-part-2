@@ -71,3 +71,13 @@ export type InvoiceItem = Prisma.InvoiceItemModel
  * 
  */
 export type Payment = Prisma.PaymentModel
+/**
+ * Model EmailLog
+ * 
+ */
+export type EmailLog = Prisma.EmailLogModel
+/**
+ * Model InvoiceEvent
+ * 
+ */
+export type InvoiceEvent = Prisma.InvoiceEventModel

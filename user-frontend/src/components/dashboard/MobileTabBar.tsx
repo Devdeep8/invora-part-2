@@ -1,13 +1,13 @@
 'use client'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Home, BarChart3, Plus, LayoutGrid, Settings } from 'lucide-react'
+import { Home, Wallet, Users, Plus, Settings } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const TABS = [
   { href: '/dashboard', label: 'Home', icon: Home, exact: true },
-  { href: '/dashboard/analytics', label: 'Analytics', icon: BarChart3, exact: false },
-  { href: '/dashboard/profiles', label: 'Profiles', icon: LayoutGrid, exact: false },
+  { href: '/dashboard/clients', label: 'Clients', icon: Users, exact: false },
+  { href: '/dashboard/invoices', label: 'Invoices', icon: Wallet, exact: false },
   { href: '/dashboard/settings', label: 'Settings', icon: Settings, exact: false },
 ]
 
@@ -40,9 +40,9 @@ export function MobileTabBar() {
       {/* Center "Add" button */}
       <div className="flex-1 flex items-center justify-center">
         <Link
-          href="/dashboard/profiles"
+          href="/dashboard/invoices/new"
           className="flex h-12 w-12 items-center justify-center rounded-full bg-primary shadow-lg shadow-primary/30 transition-all duration-150 hover:scale-105 active:scale-95"
-          title="Create / Manage Profiles"
+          title="Create New Invoice"
         >
           <Plus className="h-5 w-5 text-primary-foreground" />
         </Link>

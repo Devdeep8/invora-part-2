@@ -56,7 +56,9 @@ export const ModelName = {
   Client: 'Client',
   Invoice: 'Invoice',
   InvoiceItem: 'InvoiceItem',
-  Payment: 'Payment'
+  Payment: 'Payment',
+  EmailLog: 'EmailLog',
+  InvoiceEvent: 'InvoiceEvent'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -112,6 +114,8 @@ export const BusinessScalarFieldEnum = {
   bankAccountNo: 'bankAccountNo',
   bankIfsc: 'bankIfsc',
   bankName: 'bankName',
+  razorpayKeyId: 'razorpayKeyId',
+  razorpayKeySecret: 'razorpayKeySecret',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   tax: 'tax'
@@ -158,6 +162,8 @@ export const InvoiceScalarFieldEnum = {
   viewedAt: 'viewedAt',
   sentAt: 'sentAt',
   razorpayPaymentLinkId: 'razorpayPaymentLinkId',
+  emailOpenedAt: 'emailOpenedAt',
+  publicIdExpiresAt: 'publicIdExpiresAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   deletedAt: 'deletedAt'
@@ -193,6 +199,39 @@ export const PaymentScalarFieldEnum = {
 } as const
 
 export type PaymentScalarFieldEnum = (typeof PaymentScalarFieldEnum)[keyof typeof PaymentScalarFieldEnum]
+
+
+export const EmailLogScalarFieldEnum = {
+  id: 'id',
+  invoiceId: 'invoiceId',
+  businessId: 'businessId',
+  toEmail: 'toEmail',
+  subject: 'subject',
+  status: 'status',
+  attemptCount: 'attemptCount',
+  sentAt: 'sentAt',
+  openedAt: 'openedAt',
+  failureReason: 'failureReason',
+  nextRetryAt: 'nextRetryAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type EmailLogScalarFieldEnum = (typeof EmailLogScalarFieldEnum)[keyof typeof EmailLogScalarFieldEnum]
+
+
+export const InvoiceEventScalarFieldEnum = {
+  id: 'id',
+  invoiceId: 'invoiceId',
+  businessId: 'businessId',
+  eventType: 'eventType',
+  actorType: 'actorType',
+  actorId: 'actorId',
+  metadata: 'metadata',
+  createdAt: 'createdAt'
+} as const
+
+export type InvoiceEventScalarFieldEnum = (typeof InvoiceEventScalarFieldEnum)[keyof typeof InvoiceEventScalarFieldEnum]
 
 
 export const SortOrder = {

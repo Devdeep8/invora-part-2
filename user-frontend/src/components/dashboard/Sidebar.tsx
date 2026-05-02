@@ -15,11 +15,13 @@ import {
   PanelLeft,
   LogOut,
   Wallet,
+  Users,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const NAV_ITEMS = [
   { href: '/dashboard', label: 'Overview', icon: Home, exact: true },
+  { href: '/dashboard/clients', label: 'Clients', icon: Users, exact: false },
   { href: '/dashboard/invoices', label: 'Invoices', icon: Wallet, exact: false },
   { href: '/dashboard/analytics', label: 'Analytics', icon: BarChart3, exact: false },
 ]

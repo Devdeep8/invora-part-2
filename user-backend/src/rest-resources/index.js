@@ -12,6 +12,10 @@ import errorMiddleware from "@/src/rest-resources/middlewares/error.middleware.j
 import { HealthService } from "@/src/services/health.service.js";
 import router from "./routes";
 import { contextMiddleware } from "./middlewares/context.middleware";
+import { registerInvoiceListeners } from "@/src/services/invoice/invoice-event.listener.js";
+
+// Register event listeners (must be before app initialization)
+registerInvoiceListeners();
 
 const app = express();
 

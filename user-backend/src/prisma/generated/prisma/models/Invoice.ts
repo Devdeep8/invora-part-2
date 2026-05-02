@@ -67,6 +67,8 @@ export type InvoiceMinAggregateOutputType = {
   viewedAt: Date | null
   sentAt: Date | null
   razorpayPaymentLinkId: string | null
+  emailOpenedAt: Date | null
+  publicIdExpiresAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
@@ -91,6 +93,8 @@ export type InvoiceMaxAggregateOutputType = {
   viewedAt: Date | null
   sentAt: Date | null
   razorpayPaymentLinkId: string | null
+  emailOpenedAt: Date | null
+  publicIdExpiresAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
   deletedAt: Date | null
@@ -115,6 +119,8 @@ export type InvoiceCountAggregateOutputType = {
   viewedAt: number
   sentAt: number
   razorpayPaymentLinkId: number
+  emailOpenedAt: number
+  publicIdExpiresAt: number
   createdAt: number
   updatedAt: number
   deletedAt: number
@@ -163,6 +169,8 @@ export type InvoiceMinAggregateInputType = {
   viewedAt?: true
   sentAt?: true
   razorpayPaymentLinkId?: true
+  emailOpenedAt?: true
+  publicIdExpiresAt?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
@@ -187,6 +195,8 @@ export type InvoiceMaxAggregateInputType = {
   viewedAt?: true
   sentAt?: true
   razorpayPaymentLinkId?: true
+  emailOpenedAt?: true
+  publicIdExpiresAt?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
@@ -211,6 +221,8 @@ export type InvoiceCountAggregateInputType = {
   viewedAt?: true
   sentAt?: true
   razorpayPaymentLinkId?: true
+  emailOpenedAt?: true
+  publicIdExpiresAt?: true
   createdAt?: true
   updatedAt?: true
   deletedAt?: true
@@ -322,6 +334,8 @@ export type InvoiceGroupByOutputType = {
   viewedAt: Date | null
   sentAt: Date | null
   razorpayPaymentLinkId: string | null
+  emailOpenedAt: Date | null
+  publicIdExpiresAt: Date | null
   createdAt: Date
   updatedAt: Date
   deletedAt: Date | null
@@ -369,6 +383,8 @@ export type InvoiceWhereInput = {
   viewedAt?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
   sentAt?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
   razorpayPaymentLinkId?: Prisma.StringNullableFilter<"Invoice"> | string | null
+  emailOpenedAt?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
+  publicIdExpiresAt?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Invoice"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Invoice"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
@@ -376,6 +392,8 @@ export type InvoiceWhereInput = {
   client?: Prisma.XOR<Prisma.ClientScalarRelationFilter, Prisma.ClientWhereInput>
   items?: Prisma.InvoiceItemListRelationFilter
   payments?: Prisma.PaymentListRelationFilter
+  emailLogs?: Prisma.EmailLogListRelationFilter
+  events?: Prisma.InvoiceEventListRelationFilter
 }
 
 export type InvoiceOrderByWithRelationInput = {
@@ -397,6 +415,8 @@ export type InvoiceOrderByWithRelationInput = {
   viewedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   sentAt?: Prisma.SortOrderInput | Prisma.SortOrder
   razorpayPaymentLinkId?: Prisma.SortOrderInput | Prisma.SortOrder
+  emailOpenedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  publicIdExpiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -404,6 +424,8 @@ export type InvoiceOrderByWithRelationInput = {
   client?: Prisma.ClientOrderByWithRelationInput
   items?: Prisma.InvoiceItemOrderByRelationAggregateInput
   payments?: Prisma.PaymentOrderByRelationAggregateInput
+  emailLogs?: Prisma.EmailLogOrderByRelationAggregateInput
+  events?: Prisma.InvoiceEventOrderByRelationAggregateInput
 }
 
 export type InvoiceWhereUniqueInput = Prisma.AtLeast<{
@@ -428,6 +450,8 @@ export type InvoiceWhereUniqueInput = Prisma.AtLeast<{
   viewedAt?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
   sentAt?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
   razorpayPaymentLinkId?: Prisma.StringNullableFilter<"Invoice"> | string | null
+  emailOpenedAt?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
+  publicIdExpiresAt?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Invoice"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Invoice"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
@@ -435,6 +459,8 @@ export type InvoiceWhereUniqueInput = Prisma.AtLeast<{
   client?: Prisma.XOR<Prisma.ClientScalarRelationFilter, Prisma.ClientWhereInput>
   items?: Prisma.InvoiceItemListRelationFilter
   payments?: Prisma.PaymentListRelationFilter
+  emailLogs?: Prisma.EmailLogListRelationFilter
+  events?: Prisma.InvoiceEventListRelationFilter
 }, "id" | "invoiceNumber" | "publicId">
 
 export type InvoiceOrderByWithAggregationInput = {
@@ -456,6 +482,8 @@ export type InvoiceOrderByWithAggregationInput = {
   viewedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   sentAt?: Prisma.SortOrderInput | Prisma.SortOrder
   razorpayPaymentLinkId?: Prisma.SortOrderInput | Prisma.SortOrder
+  emailOpenedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  publicIdExpiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -488,6 +516,8 @@ export type InvoiceScalarWhereWithAggregatesInput = {
   viewedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Invoice"> | Date | string | null
   sentAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Invoice"> | Date | string | null
   razorpayPaymentLinkId?: Prisma.StringNullableWithAggregatesFilter<"Invoice"> | string | null
+  emailOpenedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Invoice"> | Date | string | null
+  publicIdExpiresAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Invoice"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Invoice"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Invoice"> | Date | string
   deletedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Invoice"> | Date | string | null
@@ -509,6 +539,8 @@ export type InvoiceCreateInput = {
   viewedAt?: Date | string | null
   sentAt?: Date | string | null
   razorpayPaymentLinkId?: string | null
+  emailOpenedAt?: Date | string | null
+  publicIdExpiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -516,6 +548,8 @@ export type InvoiceCreateInput = {
   client: Prisma.ClientCreateNestedOneWithoutInvoicesInput
   items?: Prisma.InvoiceItemCreateNestedManyWithoutInvoiceInput
   payments?: Prisma.PaymentCreateNestedManyWithoutInvoiceInput
+  emailLogs?: Prisma.EmailLogCreateNestedManyWithoutInvoiceInput
+  events?: Prisma.InvoiceEventCreateNestedManyWithoutInvoiceInput
 }
 
 export type InvoiceUncheckedCreateInput = {
@@ -537,11 +571,15 @@ export type InvoiceUncheckedCreateInput = {
   viewedAt?: Date | string | null
   sentAt?: Date | string | null
   razorpayPaymentLinkId?: string | null
+  emailOpenedAt?: Date | string | null
+  publicIdExpiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   items?: Prisma.InvoiceItemUncheckedCreateNestedManyWithoutInvoiceInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutInvoiceInput
+  emailLogs?: Prisma.EmailLogUncheckedCreateNestedManyWithoutInvoiceInput
+  events?: Prisma.InvoiceEventUncheckedCreateNestedManyWithoutInvoiceInput
 }
 
 export type InvoiceUpdateInput = {
@@ -560,6 +598,8 @@ export type InvoiceUpdateInput = {
   viewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   razorpayPaymentLinkId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailOpenedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  publicIdExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -567,6 +607,8 @@ export type InvoiceUpdateInput = {
   client?: Prisma.ClientUpdateOneRequiredWithoutInvoicesNestedInput
   items?: Prisma.InvoiceItemUpdateManyWithoutInvoiceNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutInvoiceNestedInput
+  emailLogs?: Prisma.EmailLogUpdateManyWithoutInvoiceNestedInput
+  events?: Prisma.InvoiceEventUpdateManyWithoutInvoiceNestedInput
 }
 
 export type InvoiceUncheckedUpdateInput = {
@@ -588,11 +630,15 @@ export type InvoiceUncheckedUpdateInput = {
   viewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   razorpayPaymentLinkId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailOpenedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  publicIdExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   items?: Prisma.InvoiceItemUncheckedUpdateManyWithoutInvoiceNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutInvoiceNestedInput
+  emailLogs?: Prisma.EmailLogUncheckedUpdateManyWithoutInvoiceNestedInput
+  events?: Prisma.InvoiceEventUncheckedUpdateManyWithoutInvoiceNestedInput
 }
 
 export type InvoiceCreateManyInput = {
@@ -614,6 +660,8 @@ export type InvoiceCreateManyInput = {
   viewedAt?: Date | string | null
   sentAt?: Date | string | null
   razorpayPaymentLinkId?: string | null
+  emailOpenedAt?: Date | string | null
+  publicIdExpiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -635,6 +683,8 @@ export type InvoiceUpdateManyMutationInput = {
   viewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   razorpayPaymentLinkId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailOpenedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  publicIdExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -659,6 +709,8 @@ export type InvoiceUncheckedUpdateManyInput = {
   viewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   razorpayPaymentLinkId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailOpenedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  publicIdExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -693,6 +745,8 @@ export type InvoiceCountOrderByAggregateInput = {
   viewedAt?: Prisma.SortOrder
   sentAt?: Prisma.SortOrder
   razorpayPaymentLinkId?: Prisma.SortOrder
+  emailOpenedAt?: Prisma.SortOrder
+  publicIdExpiresAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
@@ -728,6 +782,8 @@ export type InvoiceMaxOrderByAggregateInput = {
   viewedAt?: Prisma.SortOrder
   sentAt?: Prisma.SortOrder
   razorpayPaymentLinkId?: Prisma.SortOrder
+  emailOpenedAt?: Prisma.SortOrder
+  publicIdExpiresAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
@@ -752,6 +808,8 @@ export type InvoiceMinOrderByAggregateInput = {
   viewedAt?: Prisma.SortOrder
   sentAt?: Prisma.SortOrder
   razorpayPaymentLinkId?: Prisma.SortOrder
+  emailOpenedAt?: Prisma.SortOrder
+  publicIdExpiresAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   deletedAt?: Prisma.SortOrder
@@ -889,6 +947,34 @@ export type InvoiceUpdateOneRequiredWithoutPaymentsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.InvoiceUpdateToOneWithWhereWithoutPaymentsInput, Prisma.InvoiceUpdateWithoutPaymentsInput>, Prisma.InvoiceUncheckedUpdateWithoutPaymentsInput>
 }
 
+export type InvoiceCreateNestedOneWithoutEmailLogsInput = {
+  create?: Prisma.XOR<Prisma.InvoiceCreateWithoutEmailLogsInput, Prisma.InvoiceUncheckedCreateWithoutEmailLogsInput>
+  connectOrCreate?: Prisma.InvoiceCreateOrConnectWithoutEmailLogsInput
+  connect?: Prisma.InvoiceWhereUniqueInput
+}
+
+export type InvoiceUpdateOneRequiredWithoutEmailLogsNestedInput = {
+  create?: Prisma.XOR<Prisma.InvoiceCreateWithoutEmailLogsInput, Prisma.InvoiceUncheckedCreateWithoutEmailLogsInput>
+  connectOrCreate?: Prisma.InvoiceCreateOrConnectWithoutEmailLogsInput
+  upsert?: Prisma.InvoiceUpsertWithoutEmailLogsInput
+  connect?: Prisma.InvoiceWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.InvoiceUpdateToOneWithWhereWithoutEmailLogsInput, Prisma.InvoiceUpdateWithoutEmailLogsInput>, Prisma.InvoiceUncheckedUpdateWithoutEmailLogsInput>
+}
+
+export type InvoiceCreateNestedOneWithoutEventsInput = {
+  create?: Prisma.XOR<Prisma.InvoiceCreateWithoutEventsInput, Prisma.InvoiceUncheckedCreateWithoutEventsInput>
+  connectOrCreate?: Prisma.InvoiceCreateOrConnectWithoutEventsInput
+  connect?: Prisma.InvoiceWhereUniqueInput
+}
+
+export type InvoiceUpdateOneRequiredWithoutEventsNestedInput = {
+  create?: Prisma.XOR<Prisma.InvoiceCreateWithoutEventsInput, Prisma.InvoiceUncheckedCreateWithoutEventsInput>
+  connectOrCreate?: Prisma.InvoiceCreateOrConnectWithoutEventsInput
+  upsert?: Prisma.InvoiceUpsertWithoutEventsInput
+  connect?: Prisma.InvoiceWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.InvoiceUpdateToOneWithWhereWithoutEventsInput, Prisma.InvoiceUpdateWithoutEventsInput>, Prisma.InvoiceUncheckedUpdateWithoutEventsInput>
+}
+
 export type InvoiceCreateWithoutBusinessInput = {
   invoiceNumber: string
   status?: $Enums.InvoiceStatus
@@ -905,12 +991,16 @@ export type InvoiceCreateWithoutBusinessInput = {
   viewedAt?: Date | string | null
   sentAt?: Date | string | null
   razorpayPaymentLinkId?: string | null
+  emailOpenedAt?: Date | string | null
+  publicIdExpiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   client: Prisma.ClientCreateNestedOneWithoutInvoicesInput
   items?: Prisma.InvoiceItemCreateNestedManyWithoutInvoiceInput
   payments?: Prisma.PaymentCreateNestedManyWithoutInvoiceInput
+  emailLogs?: Prisma.EmailLogCreateNestedManyWithoutInvoiceInput
+  events?: Prisma.InvoiceEventCreateNestedManyWithoutInvoiceInput
 }
 
 export type InvoiceUncheckedCreateWithoutBusinessInput = {
@@ -931,11 +1021,15 @@ export type InvoiceUncheckedCreateWithoutBusinessInput = {
   viewedAt?: Date | string | null
   sentAt?: Date | string | null
   razorpayPaymentLinkId?: string | null
+  emailOpenedAt?: Date | string | null
+  publicIdExpiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   items?: Prisma.InvoiceItemUncheckedCreateNestedManyWithoutInvoiceInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutInvoiceInput
+  emailLogs?: Prisma.EmailLogUncheckedCreateNestedManyWithoutInvoiceInput
+  events?: Prisma.InvoiceEventUncheckedCreateNestedManyWithoutInvoiceInput
 }
 
 export type InvoiceCreateOrConnectWithoutBusinessInput = {
@@ -986,6 +1080,8 @@ export type InvoiceScalarWhereInput = {
   viewedAt?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
   sentAt?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
   razorpayPaymentLinkId?: Prisma.StringNullableFilter<"Invoice"> | string | null
+  emailOpenedAt?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
+  publicIdExpiresAt?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Invoice"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Invoice"> | Date | string
   deletedAt?: Prisma.DateTimeNullableFilter<"Invoice"> | Date | string | null
@@ -1007,12 +1103,16 @@ export type InvoiceCreateWithoutClientInput = {
   viewedAt?: Date | string | null
   sentAt?: Date | string | null
   razorpayPaymentLinkId?: string | null
+  emailOpenedAt?: Date | string | null
+  publicIdExpiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   business: Prisma.BusinessCreateNestedOneWithoutInvoicesInput
   items?: Prisma.InvoiceItemCreateNestedManyWithoutInvoiceInput
   payments?: Prisma.PaymentCreateNestedManyWithoutInvoiceInput
+  emailLogs?: Prisma.EmailLogCreateNestedManyWithoutInvoiceInput
+  events?: Prisma.InvoiceEventCreateNestedManyWithoutInvoiceInput
 }
 
 export type InvoiceUncheckedCreateWithoutClientInput = {
@@ -1033,11 +1133,15 @@ export type InvoiceUncheckedCreateWithoutClientInput = {
   viewedAt?: Date | string | null
   sentAt?: Date | string | null
   razorpayPaymentLinkId?: string | null
+  emailOpenedAt?: Date | string | null
+  publicIdExpiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   items?: Prisma.InvoiceItemUncheckedCreateNestedManyWithoutInvoiceInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutInvoiceInput
+  emailLogs?: Prisma.EmailLogUncheckedCreateNestedManyWithoutInvoiceInput
+  events?: Prisma.InvoiceEventUncheckedCreateNestedManyWithoutInvoiceInput
 }
 
 export type InvoiceCreateOrConnectWithoutClientInput = {
@@ -1082,12 +1186,16 @@ export type InvoiceCreateWithoutItemsInput = {
   viewedAt?: Date | string | null
   sentAt?: Date | string | null
   razorpayPaymentLinkId?: string | null
+  emailOpenedAt?: Date | string | null
+  publicIdExpiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   business: Prisma.BusinessCreateNestedOneWithoutInvoicesInput
   client: Prisma.ClientCreateNestedOneWithoutInvoicesInput
   payments?: Prisma.PaymentCreateNestedManyWithoutInvoiceInput
+  emailLogs?: Prisma.EmailLogCreateNestedManyWithoutInvoiceInput
+  events?: Prisma.InvoiceEventCreateNestedManyWithoutInvoiceInput
 }
 
 export type InvoiceUncheckedCreateWithoutItemsInput = {
@@ -1109,10 +1217,14 @@ export type InvoiceUncheckedCreateWithoutItemsInput = {
   viewedAt?: Date | string | null
   sentAt?: Date | string | null
   razorpayPaymentLinkId?: string | null
+  emailOpenedAt?: Date | string | null
+  publicIdExpiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutInvoiceInput
+  emailLogs?: Prisma.EmailLogUncheckedCreateNestedManyWithoutInvoiceInput
+  events?: Prisma.InvoiceEventUncheckedCreateNestedManyWithoutInvoiceInput
 }
 
 export type InvoiceCreateOrConnectWithoutItemsInput = {
@@ -1147,12 +1259,16 @@ export type InvoiceUpdateWithoutItemsInput = {
   viewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   razorpayPaymentLinkId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailOpenedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  publicIdExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   business?: Prisma.BusinessUpdateOneRequiredWithoutInvoicesNestedInput
   client?: Prisma.ClientUpdateOneRequiredWithoutInvoicesNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutInvoiceNestedInput
+  emailLogs?: Prisma.EmailLogUpdateManyWithoutInvoiceNestedInput
+  events?: Prisma.InvoiceEventUpdateManyWithoutInvoiceNestedInput
 }
 
 export type InvoiceUncheckedUpdateWithoutItemsInput = {
@@ -1174,10 +1290,14 @@ export type InvoiceUncheckedUpdateWithoutItemsInput = {
   viewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   razorpayPaymentLinkId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailOpenedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  publicIdExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutInvoiceNestedInput
+  emailLogs?: Prisma.EmailLogUncheckedUpdateManyWithoutInvoiceNestedInput
+  events?: Prisma.InvoiceEventUncheckedUpdateManyWithoutInvoiceNestedInput
 }
 
 export type InvoiceCreateWithoutPaymentsInput = {
@@ -1196,12 +1316,16 @@ export type InvoiceCreateWithoutPaymentsInput = {
   viewedAt?: Date | string | null
   sentAt?: Date | string | null
   razorpayPaymentLinkId?: string | null
+  emailOpenedAt?: Date | string | null
+  publicIdExpiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   business: Prisma.BusinessCreateNestedOneWithoutInvoicesInput
   client: Prisma.ClientCreateNestedOneWithoutInvoicesInput
   items?: Prisma.InvoiceItemCreateNestedManyWithoutInvoiceInput
+  emailLogs?: Prisma.EmailLogCreateNestedManyWithoutInvoiceInput
+  events?: Prisma.InvoiceEventCreateNestedManyWithoutInvoiceInput
 }
 
 export type InvoiceUncheckedCreateWithoutPaymentsInput = {
@@ -1223,10 +1347,14 @@ export type InvoiceUncheckedCreateWithoutPaymentsInput = {
   viewedAt?: Date | string | null
   sentAt?: Date | string | null
   razorpayPaymentLinkId?: string | null
+  emailOpenedAt?: Date | string | null
+  publicIdExpiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
   items?: Prisma.InvoiceItemUncheckedCreateNestedManyWithoutInvoiceInput
+  emailLogs?: Prisma.EmailLogUncheckedCreateNestedManyWithoutInvoiceInput
+  events?: Prisma.InvoiceEventUncheckedCreateNestedManyWithoutInvoiceInput
 }
 
 export type InvoiceCreateOrConnectWithoutPaymentsInput = {
@@ -1261,12 +1389,16 @@ export type InvoiceUpdateWithoutPaymentsInput = {
   viewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   razorpayPaymentLinkId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailOpenedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  publicIdExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   business?: Prisma.BusinessUpdateOneRequiredWithoutInvoicesNestedInput
   client?: Prisma.ClientUpdateOneRequiredWithoutInvoicesNestedInput
   items?: Prisma.InvoiceItemUpdateManyWithoutInvoiceNestedInput
+  emailLogs?: Prisma.EmailLogUpdateManyWithoutInvoiceNestedInput
+  events?: Prisma.InvoiceEventUpdateManyWithoutInvoiceNestedInput
 }
 
 export type InvoiceUncheckedUpdateWithoutPaymentsInput = {
@@ -1288,10 +1420,274 @@ export type InvoiceUncheckedUpdateWithoutPaymentsInput = {
   viewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   razorpayPaymentLinkId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailOpenedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  publicIdExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   items?: Prisma.InvoiceItemUncheckedUpdateManyWithoutInvoiceNestedInput
+  emailLogs?: Prisma.EmailLogUncheckedUpdateManyWithoutInvoiceNestedInput
+  events?: Prisma.InvoiceEventUncheckedUpdateManyWithoutInvoiceNestedInput
+}
+
+export type InvoiceCreateWithoutEmailLogsInput = {
+  invoiceNumber: string
+  status?: $Enums.InvoiceStatus
+  issueDate: Date | string
+  dueDate: Date | string
+  subtotal: number
+  taxRate: number
+  taxAmount: number
+  discount?: number
+  total: number
+  notes?: string | null
+  terms?: string | null
+  publicId?: string
+  viewedAt?: Date | string | null
+  sentAt?: Date | string | null
+  razorpayPaymentLinkId?: string | null
+  emailOpenedAt?: Date | string | null
+  publicIdExpiresAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  business: Prisma.BusinessCreateNestedOneWithoutInvoicesInput
+  client: Prisma.ClientCreateNestedOneWithoutInvoicesInput
+  items?: Prisma.InvoiceItemCreateNestedManyWithoutInvoiceInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutInvoiceInput
+  events?: Prisma.InvoiceEventCreateNestedManyWithoutInvoiceInput
+}
+
+export type InvoiceUncheckedCreateWithoutEmailLogsInput = {
+  id?: number
+  businessId: number
+  clientId: number
+  invoiceNumber: string
+  status?: $Enums.InvoiceStatus
+  issueDate: Date | string
+  dueDate: Date | string
+  subtotal: number
+  taxRate: number
+  taxAmount: number
+  discount?: number
+  total: number
+  notes?: string | null
+  terms?: string | null
+  publicId?: string
+  viewedAt?: Date | string | null
+  sentAt?: Date | string | null
+  razorpayPaymentLinkId?: string | null
+  emailOpenedAt?: Date | string | null
+  publicIdExpiresAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  items?: Prisma.InvoiceItemUncheckedCreateNestedManyWithoutInvoiceInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutInvoiceInput
+  events?: Prisma.InvoiceEventUncheckedCreateNestedManyWithoutInvoiceInput
+}
+
+export type InvoiceCreateOrConnectWithoutEmailLogsInput = {
+  where: Prisma.InvoiceWhereUniqueInput
+  create: Prisma.XOR<Prisma.InvoiceCreateWithoutEmailLogsInput, Prisma.InvoiceUncheckedCreateWithoutEmailLogsInput>
+}
+
+export type InvoiceUpsertWithoutEmailLogsInput = {
+  update: Prisma.XOR<Prisma.InvoiceUpdateWithoutEmailLogsInput, Prisma.InvoiceUncheckedUpdateWithoutEmailLogsInput>
+  create: Prisma.XOR<Prisma.InvoiceCreateWithoutEmailLogsInput, Prisma.InvoiceUncheckedCreateWithoutEmailLogsInput>
+  where?: Prisma.InvoiceWhereInput
+}
+
+export type InvoiceUpdateToOneWithWhereWithoutEmailLogsInput = {
+  where?: Prisma.InvoiceWhereInput
+  data: Prisma.XOR<Prisma.InvoiceUpdateWithoutEmailLogsInput, Prisma.InvoiceUncheckedUpdateWithoutEmailLogsInput>
+}
+
+export type InvoiceUpdateWithoutEmailLogsInput = {
+  invoiceNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus
+  issueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subtotal?: Prisma.FloatFieldUpdateOperationsInput | number
+  taxRate?: Prisma.FloatFieldUpdateOperationsInput | number
+  taxAmount?: Prisma.FloatFieldUpdateOperationsInput | number
+  discount?: Prisma.FloatFieldUpdateOperationsInput | number
+  total?: Prisma.FloatFieldUpdateOperationsInput | number
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  terms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publicId?: Prisma.StringFieldUpdateOperationsInput | string
+  viewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  razorpayPaymentLinkId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailOpenedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  publicIdExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  business?: Prisma.BusinessUpdateOneRequiredWithoutInvoicesNestedInput
+  client?: Prisma.ClientUpdateOneRequiredWithoutInvoicesNestedInput
+  items?: Prisma.InvoiceItemUpdateManyWithoutInvoiceNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutInvoiceNestedInput
+  events?: Prisma.InvoiceEventUpdateManyWithoutInvoiceNestedInput
+}
+
+export type InvoiceUncheckedUpdateWithoutEmailLogsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  businessId?: Prisma.IntFieldUpdateOperationsInput | number
+  clientId?: Prisma.IntFieldUpdateOperationsInput | number
+  invoiceNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus
+  issueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subtotal?: Prisma.FloatFieldUpdateOperationsInput | number
+  taxRate?: Prisma.FloatFieldUpdateOperationsInput | number
+  taxAmount?: Prisma.FloatFieldUpdateOperationsInput | number
+  discount?: Prisma.FloatFieldUpdateOperationsInput | number
+  total?: Prisma.FloatFieldUpdateOperationsInput | number
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  terms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publicId?: Prisma.StringFieldUpdateOperationsInput | string
+  viewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  razorpayPaymentLinkId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailOpenedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  publicIdExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  items?: Prisma.InvoiceItemUncheckedUpdateManyWithoutInvoiceNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutInvoiceNestedInput
+  events?: Prisma.InvoiceEventUncheckedUpdateManyWithoutInvoiceNestedInput
+}
+
+export type InvoiceCreateWithoutEventsInput = {
+  invoiceNumber: string
+  status?: $Enums.InvoiceStatus
+  issueDate: Date | string
+  dueDate: Date | string
+  subtotal: number
+  taxRate: number
+  taxAmount: number
+  discount?: number
+  total: number
+  notes?: string | null
+  terms?: string | null
+  publicId?: string
+  viewedAt?: Date | string | null
+  sentAt?: Date | string | null
+  razorpayPaymentLinkId?: string | null
+  emailOpenedAt?: Date | string | null
+  publicIdExpiresAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  business: Prisma.BusinessCreateNestedOneWithoutInvoicesInput
+  client: Prisma.ClientCreateNestedOneWithoutInvoicesInput
+  items?: Prisma.InvoiceItemCreateNestedManyWithoutInvoiceInput
+  payments?: Prisma.PaymentCreateNestedManyWithoutInvoiceInput
+  emailLogs?: Prisma.EmailLogCreateNestedManyWithoutInvoiceInput
+}
+
+export type InvoiceUncheckedCreateWithoutEventsInput = {
+  id?: number
+  businessId: number
+  clientId: number
+  invoiceNumber: string
+  status?: $Enums.InvoiceStatus
+  issueDate: Date | string
+  dueDate: Date | string
+  subtotal: number
+  taxRate: number
+  taxAmount: number
+  discount?: number
+  total: number
+  notes?: string | null
+  terms?: string | null
+  publicId?: string
+  viewedAt?: Date | string | null
+  sentAt?: Date | string | null
+  razorpayPaymentLinkId?: string | null
+  emailOpenedAt?: Date | string | null
+  publicIdExpiresAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  deletedAt?: Date | string | null
+  items?: Prisma.InvoiceItemUncheckedCreateNestedManyWithoutInvoiceInput
+  payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutInvoiceInput
+  emailLogs?: Prisma.EmailLogUncheckedCreateNestedManyWithoutInvoiceInput
+}
+
+export type InvoiceCreateOrConnectWithoutEventsInput = {
+  where: Prisma.InvoiceWhereUniqueInput
+  create: Prisma.XOR<Prisma.InvoiceCreateWithoutEventsInput, Prisma.InvoiceUncheckedCreateWithoutEventsInput>
+}
+
+export type InvoiceUpsertWithoutEventsInput = {
+  update: Prisma.XOR<Prisma.InvoiceUpdateWithoutEventsInput, Prisma.InvoiceUncheckedUpdateWithoutEventsInput>
+  create: Prisma.XOR<Prisma.InvoiceCreateWithoutEventsInput, Prisma.InvoiceUncheckedCreateWithoutEventsInput>
+  where?: Prisma.InvoiceWhereInput
+}
+
+export type InvoiceUpdateToOneWithWhereWithoutEventsInput = {
+  where?: Prisma.InvoiceWhereInput
+  data: Prisma.XOR<Prisma.InvoiceUpdateWithoutEventsInput, Prisma.InvoiceUncheckedUpdateWithoutEventsInput>
+}
+
+export type InvoiceUpdateWithoutEventsInput = {
+  invoiceNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus
+  issueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subtotal?: Prisma.FloatFieldUpdateOperationsInput | number
+  taxRate?: Prisma.FloatFieldUpdateOperationsInput | number
+  taxAmount?: Prisma.FloatFieldUpdateOperationsInput | number
+  discount?: Prisma.FloatFieldUpdateOperationsInput | number
+  total?: Prisma.FloatFieldUpdateOperationsInput | number
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  terms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publicId?: Prisma.StringFieldUpdateOperationsInput | string
+  viewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  razorpayPaymentLinkId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailOpenedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  publicIdExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  business?: Prisma.BusinessUpdateOneRequiredWithoutInvoicesNestedInput
+  client?: Prisma.ClientUpdateOneRequiredWithoutInvoicesNestedInput
+  items?: Prisma.InvoiceItemUpdateManyWithoutInvoiceNestedInput
+  payments?: Prisma.PaymentUpdateManyWithoutInvoiceNestedInput
+  emailLogs?: Prisma.EmailLogUpdateManyWithoutInvoiceNestedInput
+}
+
+export type InvoiceUncheckedUpdateWithoutEventsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  businessId?: Prisma.IntFieldUpdateOperationsInput | number
+  clientId?: Prisma.IntFieldUpdateOperationsInput | number
+  invoiceNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus
+  issueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  dueDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  subtotal?: Prisma.FloatFieldUpdateOperationsInput | number
+  taxRate?: Prisma.FloatFieldUpdateOperationsInput | number
+  taxAmount?: Prisma.FloatFieldUpdateOperationsInput | number
+  discount?: Prisma.FloatFieldUpdateOperationsInput | number
+  total?: Prisma.FloatFieldUpdateOperationsInput | number
+  notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  terms?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  publicId?: Prisma.StringFieldUpdateOperationsInput | string
+  viewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  razorpayPaymentLinkId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailOpenedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  publicIdExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  items?: Prisma.InvoiceItemUncheckedUpdateManyWithoutInvoiceNestedInput
+  payments?: Prisma.PaymentUncheckedUpdateManyWithoutInvoiceNestedInput
+  emailLogs?: Prisma.EmailLogUncheckedUpdateManyWithoutInvoiceNestedInput
 }
 
 export type InvoiceCreateManyBusinessInput = {
@@ -1312,6 +1708,8 @@ export type InvoiceCreateManyBusinessInput = {
   viewedAt?: Date | string | null
   sentAt?: Date | string | null
   razorpayPaymentLinkId?: string | null
+  emailOpenedAt?: Date | string | null
+  publicIdExpiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -1333,12 +1731,16 @@ export type InvoiceUpdateWithoutBusinessInput = {
   viewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   razorpayPaymentLinkId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailOpenedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  publicIdExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   client?: Prisma.ClientUpdateOneRequiredWithoutInvoicesNestedInput
   items?: Prisma.InvoiceItemUpdateManyWithoutInvoiceNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutInvoiceNestedInput
+  emailLogs?: Prisma.EmailLogUpdateManyWithoutInvoiceNestedInput
+  events?: Prisma.InvoiceEventUpdateManyWithoutInvoiceNestedInput
 }
 
 export type InvoiceUncheckedUpdateWithoutBusinessInput = {
@@ -1359,11 +1761,15 @@ export type InvoiceUncheckedUpdateWithoutBusinessInput = {
   viewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   razorpayPaymentLinkId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailOpenedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  publicIdExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   items?: Prisma.InvoiceItemUncheckedUpdateManyWithoutInvoiceNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutInvoiceNestedInput
+  emailLogs?: Prisma.EmailLogUncheckedUpdateManyWithoutInvoiceNestedInput
+  events?: Prisma.InvoiceEventUncheckedUpdateManyWithoutInvoiceNestedInput
 }
 
 export type InvoiceUncheckedUpdateManyWithoutBusinessInput = {
@@ -1384,6 +1790,8 @@ export type InvoiceUncheckedUpdateManyWithoutBusinessInput = {
   viewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   razorpayPaymentLinkId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailOpenedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  publicIdExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1407,6 +1815,8 @@ export type InvoiceCreateManyClientInput = {
   viewedAt?: Date | string | null
   sentAt?: Date | string | null
   razorpayPaymentLinkId?: string | null
+  emailOpenedAt?: Date | string | null
+  publicIdExpiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   deletedAt?: Date | string | null
@@ -1428,12 +1838,16 @@ export type InvoiceUpdateWithoutClientInput = {
   viewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   razorpayPaymentLinkId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailOpenedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  publicIdExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   business?: Prisma.BusinessUpdateOneRequiredWithoutInvoicesNestedInput
   items?: Prisma.InvoiceItemUpdateManyWithoutInvoiceNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutInvoiceNestedInput
+  emailLogs?: Prisma.EmailLogUpdateManyWithoutInvoiceNestedInput
+  events?: Prisma.InvoiceEventUpdateManyWithoutInvoiceNestedInput
 }
 
 export type InvoiceUncheckedUpdateWithoutClientInput = {
@@ -1454,11 +1868,15 @@ export type InvoiceUncheckedUpdateWithoutClientInput = {
   viewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   razorpayPaymentLinkId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailOpenedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  publicIdExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   items?: Prisma.InvoiceItemUncheckedUpdateManyWithoutInvoiceNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutInvoiceNestedInput
+  emailLogs?: Prisma.EmailLogUncheckedUpdateManyWithoutInvoiceNestedInput
+  events?: Prisma.InvoiceEventUncheckedUpdateManyWithoutInvoiceNestedInput
 }
 
 export type InvoiceUncheckedUpdateManyWithoutClientInput = {
@@ -1479,6 +1897,8 @@ export type InvoiceUncheckedUpdateManyWithoutClientInput = {
   viewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   razorpayPaymentLinkId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  emailOpenedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  publicIdExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   deletedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -1492,11 +1912,15 @@ export type InvoiceUncheckedUpdateManyWithoutClientInput = {
 export type InvoiceCountOutputType = {
   items: number
   payments: number
+  emailLogs: number
+  events: number
 }
 
 export type InvoiceCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   items?: boolean | InvoiceCountOutputTypeCountItemsArgs
   payments?: boolean | InvoiceCountOutputTypeCountPaymentsArgs
+  emailLogs?: boolean | InvoiceCountOutputTypeCountEmailLogsArgs
+  events?: boolean | InvoiceCountOutputTypeCountEventsArgs
 }
 
 /**
@@ -1523,6 +1947,20 @@ export type InvoiceCountOutputTypeCountPaymentsArgs<ExtArgs extends runtime.Type
   where?: Prisma.PaymentWhereInput
 }
 
+/**
+ * InvoiceCountOutputType without action
+ */
+export type InvoiceCountOutputTypeCountEmailLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.EmailLogWhereInput
+}
+
+/**
+ * InvoiceCountOutputType without action
+ */
+export type InvoiceCountOutputTypeCountEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.InvoiceEventWhereInput
+}
+
 
 export type InvoiceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1543,6 +1981,8 @@ export type InvoiceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   viewedAt?: boolean
   sentAt?: boolean
   razorpayPaymentLinkId?: boolean
+  emailOpenedAt?: boolean
+  publicIdExpiresAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
@@ -1550,6 +1990,8 @@ export type InvoiceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   client?: boolean | Prisma.ClientDefaultArgs<ExtArgs>
   items?: boolean | Prisma.Invoice$itemsArgs<ExtArgs>
   payments?: boolean | Prisma.Invoice$paymentsArgs<ExtArgs>
+  emailLogs?: boolean | Prisma.Invoice$emailLogsArgs<ExtArgs>
+  events?: boolean | Prisma.Invoice$eventsArgs<ExtArgs>
   _count?: boolean | Prisma.InvoiceCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["invoice"]>
 
@@ -1572,6 +2014,8 @@ export type InvoiceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   viewedAt?: boolean
   sentAt?: boolean
   razorpayPaymentLinkId?: boolean
+  emailOpenedAt?: boolean
+  publicIdExpiresAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
@@ -1598,6 +2042,8 @@ export type InvoiceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   viewedAt?: boolean
   sentAt?: boolean
   razorpayPaymentLinkId?: boolean
+  emailOpenedAt?: boolean
+  publicIdExpiresAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
@@ -1624,17 +2070,21 @@ export type InvoiceSelectScalar = {
   viewedAt?: boolean
   sentAt?: boolean
   razorpayPaymentLinkId?: boolean
+  emailOpenedAt?: boolean
+  publicIdExpiresAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   deletedAt?: boolean
 }
 
-export type InvoiceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "businessId" | "clientId" | "invoiceNumber" | "status" | "issueDate" | "dueDate" | "subtotal" | "taxRate" | "taxAmount" | "discount" | "total" | "notes" | "terms" | "publicId" | "viewedAt" | "sentAt" | "razorpayPaymentLinkId" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["invoice"]>
+export type InvoiceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "businessId" | "clientId" | "invoiceNumber" | "status" | "issueDate" | "dueDate" | "subtotal" | "taxRate" | "taxAmount" | "discount" | "total" | "notes" | "terms" | "publicId" | "viewedAt" | "sentAt" | "razorpayPaymentLinkId" | "emailOpenedAt" | "publicIdExpiresAt" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["invoice"]>
 export type InvoiceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   business?: boolean | Prisma.BusinessDefaultArgs<ExtArgs>
   client?: boolean | Prisma.ClientDefaultArgs<ExtArgs>
   items?: boolean | Prisma.Invoice$itemsArgs<ExtArgs>
   payments?: boolean | Prisma.Invoice$paymentsArgs<ExtArgs>
+  emailLogs?: boolean | Prisma.Invoice$emailLogsArgs<ExtArgs>
+  events?: boolean | Prisma.Invoice$eventsArgs<ExtArgs>
   _count?: boolean | Prisma.InvoiceCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type InvoiceIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1653,6 +2103,8 @@ export type $InvoicePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     client: Prisma.$ClientPayload<ExtArgs>
     items: Prisma.$InvoiceItemPayload<ExtArgs>[]
     payments: Prisma.$PaymentPayload<ExtArgs>[]
+    emailLogs: Prisma.$EmailLogPayload<ExtArgs>[]
+    events: Prisma.$InvoiceEventPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1673,6 +2125,8 @@ export type $InvoicePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     viewedAt: Date | null
     sentAt: Date | null
     razorpayPaymentLinkId: string | null
+    emailOpenedAt: Date | null
+    publicIdExpiresAt: Date | null
     createdAt: Date
     updatedAt: Date
     deletedAt: Date | null
@@ -2074,6 +2528,8 @@ export interface Prisma__InvoiceClient<T, Null = never, ExtArgs extends runtime.
   client<T extends Prisma.ClientDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClientDefaultArgs<ExtArgs>>): Prisma.Prisma__ClientClient<runtime.Types.Result.GetResult<Prisma.$ClientPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   items<T extends Prisma.Invoice$itemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Invoice$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvoiceItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   payments<T extends Prisma.Invoice$paymentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Invoice$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  emailLogs<T extends Prisma.Invoice$emailLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Invoice$emailLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$EmailLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  events<T extends Prisma.Invoice$eventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Invoice$eventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvoiceEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2121,6 +2577,8 @@ export interface InvoiceFieldRefs {
   readonly viewedAt: Prisma.FieldRef<"Invoice", 'DateTime'>
   readonly sentAt: Prisma.FieldRef<"Invoice", 'DateTime'>
   readonly razorpayPaymentLinkId: Prisma.FieldRef<"Invoice", 'String'>
+  readonly emailOpenedAt: Prisma.FieldRef<"Invoice", 'DateTime'>
+  readonly publicIdExpiresAt: Prisma.FieldRef<"Invoice", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"Invoice", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Invoice", 'DateTime'>
   readonly deletedAt: Prisma.FieldRef<"Invoice", 'DateTime'>
@@ -2570,6 +3028,54 @@ export type Invoice$paymentsArgs<ExtArgs extends runtime.Types.Extensions.Intern
   take?: number
   skip?: number
   distinct?: Prisma.PaymentScalarFieldEnum | Prisma.PaymentScalarFieldEnum[]
+}
+
+/**
+ * Invoice.emailLogs
+ */
+export type Invoice$emailLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the EmailLog
+   */
+  select?: Prisma.EmailLogSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the EmailLog
+   */
+  omit?: Prisma.EmailLogOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.EmailLogInclude<ExtArgs> | null
+  where?: Prisma.EmailLogWhereInput
+  orderBy?: Prisma.EmailLogOrderByWithRelationInput | Prisma.EmailLogOrderByWithRelationInput[]
+  cursor?: Prisma.EmailLogWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.EmailLogScalarFieldEnum | Prisma.EmailLogScalarFieldEnum[]
+}
+
+/**
+ * Invoice.events
+ */
+export type Invoice$eventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the InvoiceEvent
+   */
+  select?: Prisma.InvoiceEventSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the InvoiceEvent
+   */
+  omit?: Prisma.InvoiceEventOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InvoiceEventInclude<ExtArgs> | null
+  where?: Prisma.InvoiceEventWhereInput
+  orderBy?: Prisma.InvoiceEventOrderByWithRelationInput | Prisma.InvoiceEventOrderByWithRelationInput[]
+  cursor?: Prisma.InvoiceEventWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.InvoiceEventScalarFieldEnum | Prisma.InvoiceEventScalarFieldEnum[]
 }
 
 /**

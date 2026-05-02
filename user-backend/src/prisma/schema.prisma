@@ -89,6 +89,8 @@ model Business {
   bankAccountNo    String? @map("bank_account_no")
   bankIfsc         String? @map("bank_ifsc")
   bankName         String? @map("bank_name")
+  razorpayKeyId    String? @map("razorpay_key_id")
+  razorpayKeySecret String? @map("razorpay_key_secret")
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -96,6 +98,8 @@ model Business {
   user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   clients Client[]
   invoices Invoice[]
+  emailLogs EmailLog[]
+  invoiceEvents InvoiceEvent[]
 
   @@map("businesses")
   @@index([userId])
@@ -148,6 +152,8 @@ model Invoice {
   viewedAt             DateTime? @map("viewed_at")
   sentAt               DateTime? @map("sent_at")
   razorpayPaymentLinkId String?  @map("razorpay_payment_link_id") // If generated via API
+  emailOpenedAt        DateTime? @map("email_opened_at")
+  publicIdExpiresAt    DateTime? @map("public_id_expires_at")
   
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime  @updatedAt @map("updated_at")
@@ -157,6 +163,8 @@ model Invoice {
   client   Client        @relation(fields: [clientId], references: [id], onDelete: Cascade)
   items    InvoiceItem[]
   payments Payment[]
+  emailLogs EmailLog[]
+  events    InvoiceEvent[]
 
   @@map("invoices")
   @@index([businessId])
@@ -199,4 +207,45 @@ model Payment {
   @@index([invoiceId])
   @@index([businessId])
   @@index([clientId])
+}
+
+model EmailLog {
+  id            Int      @id @default(autoincrement())
+  invoiceId     Int      @map("invoice_id")
+  businessId    Int      @map("business_id")
+  toEmail       String   @map("to_email")
+  subject       String
+  status        String   // PENDING, SENT, FAILED, OPENED
+  attemptCount  Int      @default(0) @map("attempt_count")
+  sentAt        DateTime? @map("sent_at")
+  openedAt      DateTime? @map("opened_at")
+  failureReason String?  @map("failure_reason")
+  nextRetryAt   DateTime? @map("next_retry_at")
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  invoice  Invoice  @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+
+  @@map("email_logs")
+  @@index([invoiceId])
+  @@index([businessId])
+}
+
+model InvoiceEvent {
+  id         Int      @id @default(autoincrement())
+  invoiceId  Int      @map("invoice_id")
+  businessId Int      @map("business_id")
+  eventType  String   @map("event_type") // CREATED, SENT, EMAIL_OPENED, VIEWED, PAYMENT_RECEIVED
+  actorType  String   @map("actor_type") // SYSTEM, USER, CLIENT
+  actorId    Int?     @map("actor_id")
+  metadata   Json?
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  invoice  Invoice  @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+
+  @@map("invoice_events")
+  @@index([invoiceId])
+  @@index([businessId])
 }

@@ -86,4 +86,48 @@ export const Errors = {
     httpStatus: 400,
     message: 'Business name is required',
   },
+  BUSINESS_NOT_FOUND: {
+    code: 'BUSINESS_NOT_FOUND',
+    httpStatus: 404,
+    message: 'Business not found',
+  },
+
+  // Client
+  CLIENT_NOT_FOUND: {
+    code: 'CLIENT_NOT_FOUND',
+    httpStatus: 404,
+    message: 'Client not found',
+  },
+  CLIENT_EMAIL_EXISTS: {
+    code: 'CLIENT_EMAIL_EXISTS',
+    httpStatus: 409,
+    message: 'Client with this email already exists',
+  },
+  CLIENT_HAS_INVOICES: {
+    code: 'CLIENT_HAS_INVOICES',
+    httpStatus: 400,
+    message: 'Cannot delete client with existing invoices',
+  },
+
+  // Invoice
+  INVOICE_NOT_FOUND: {
+    code: 'INVOICE_NOT_FOUND',
+    httpStatus: 404,
+    message: 'Invoice not found',
+  },
+  INVOICE_NOT_DRAFT: {
+    code: 'INVOICE_NOT_DRAFT',
+    httpStatus: 400,
+    message: 'Can only modify draft invoices',
+  },
+  INVOICE_ALREADY_SENT: {
+    code: 'INVOICE_ALREADY_SENT',
+    httpStatus: 400,
+    message: 'Invoice has already been sent',
+  },
+  INVALID_INVOICE_STATUS: {
+    code: 'INVALID_INVOICE_STATUS',
+    httpStatus: 400,
+    message: 'Invalid invoice status',
+  },
 }

@@ -1,5 +1,14 @@
 import api from './api'
 
+// Backend response wrapper type
+type ApiResponse<T> = {
+  success: boolean
+  message: string
+  data: T
+  locale: string
+  timestamp: string
+}
+
 export interface CreateBusinessPayload {
   businessName: string
   phone?: string
@@ -22,7 +31,7 @@ export interface CreateBusinessPayload {
 
 export const businessService = {
   create: async (payload: CreateBusinessPayload) => {
-    const { data } = await api.post('/api/v1/business', payload)
-    return data
+    const { data } = await api.post<ApiResponse<any>>('/api/v1/business', payload)
+    return data.data
   },
 }
